@@ -39,7 +39,7 @@ def children(board):
 
 
 board = [1, 2, 5,
-         3, 4, 0,
+         3, 0, 4,
          6, 7, 8]
 # print(f"legal moves = ", moves(board))
 print(f"board =\n{p_board(board)}\n")
