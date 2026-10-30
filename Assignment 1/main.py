@@ -53,7 +53,8 @@ if __name__ == "__main__":
     board = [1, 2, 5,
              3, 0, 4,
              6, 7, 8]
-    path = (Search_Algos.BFS(board))
+    path = (Search_Algos.DFS(board))
     for n,step in enumerate(path):
+        print(n)
         print(p_board(step))
         print()
