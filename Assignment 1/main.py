@@ -45,12 +45,15 @@ board = [1, 2, 5,
          6, 7, 8]
 
 # print(f"legal moves = ", moves(board))
-print(f"board =\n{p_board(board)}\n")
-for i, c in enumerate(children(board)):
-    print(f"child[{i}] =\n{p_board(c)}\n")
+#print(f"board =\n{p_board(board)}\n")
+#for i, c in enumerate(children(board)):
+ #   print(f"child[{i}] =\n{p_board(c)}\n")
 
 if __name__ == "__main__":
     board = [1, 2, 5,
              3, 0, 4,
              6, 7, 8]
-    print(Search_Algos.BFS(board))
+    path = (Search_Algos.BFS(board))
+    for n,step in enumerate(path):
+        print(p_board(step))
+        print()

@@ -8,18 +8,19 @@ def isGoal(board):
         return False
 
 def BFS(board):
-    frontier = deque([board])
+    frontier = deque([(board,[board])])
     explored = set()
     while frontier:
-        state = frontier.popleft()
+        state,path = frontier.popleft()
         explored.add(tuple(state))
         if(isGoal(state)):
-            return state
+            return path
         for child in main.children(state):
-            if(child in frontier or tuple(child) in explored):
+            states=[item[0] for item in frontier]
+            if(states in frontier or tuple(child) in explored):
                 continue
             else:
-                frontier.append(child)
+                frontier.append((child,path+[child]))
 
     return None
 
