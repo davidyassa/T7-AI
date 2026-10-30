@@ -1,3 +1,5 @@
+import Search_Algos
+
 def moves(board, n=3):
     idx = board.index(0)
     row, col = divmod(idx, n)
@@ -41,7 +43,14 @@ def children(board):
 board = [1, 2, 5,
          3, 0, 4,
          6, 7, 8]
+
 # print(f"legal moves = ", moves(board))
 print(f"board =\n{p_board(board)}\n")
 for i, c in enumerate(children(board)):
     print(f"child[{i}] =\n{p_board(c)}\n")
+
+if __name__ == "__main__":
+    board = [1, 2, 5,
+             3, 0, 4,
+             6, 7, 8]
+    print(Search_Algos.BFS(board))
