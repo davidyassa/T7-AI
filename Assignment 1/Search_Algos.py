@@ -1,3 +1,6 @@
+import math
+from cmath import sqrt
+
 import main
 from collections import deque
 
@@ -102,3 +105,32 @@ def IDFS(board):
         if path is not None:
             return path
     return None
+
+def manhattanDistance(board):
+
+    sum=0
+    for i in (board):
+        n=board[i]
+        x=n%3
+        y=n//3
+        xi=i%3
+        yi=i//3
+        h=abs(x-xi)+abs(y-yi)
+        sum+=h
+    return sum
+
+def euclideanDistance(board):
+    sum = 0
+    for i in (board):
+        n = board[i]
+        x = n % 3
+        y = n // 3
+        xi = i % 3
+        yi = i // 3
+        hx = (x - xi)*(x- xi)
+        hy = (y - yi)*(y-yi)
+        h=hx+hy
+        h=math.sqrt(h)
+        sum += h
+    return sum
+
