@@ -58,8 +58,8 @@ if __name__ == "__main__":
              3, 0, 4,
              6, 7, 8]
 
-    for algo in [BFS, DFS, IDFS]:
-        path = algo(board)
+    for algo in [BFS, DFS, IDFS, AStar_Manhattan,AStar_Euclidean]:
+        path,explored_l = algo(board)
         print(f"{algo.__name__} took {len(path)} steps")
         # print(p_board(path[-1]))
         if algo.__name__ != "DFS":
@@ -67,4 +67,6 @@ if __name__ == "__main__":
                 print(f"Step #{i+1}:")
                 print(p_board(step))
                 print()
+        print("Explored: ", explored_l, "Nodes.")
         print("-" * 50)
+
