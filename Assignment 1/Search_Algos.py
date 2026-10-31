@@ -19,14 +19,14 @@ def BFS(board):
         state, path = frontier.popleft()
         explored.add(tuple(state))
         if (isGoal(state)):
-            return path
+            return path,len(explored)
         for child in main.children(state):
             states = [item[0] for item in frontier]
             if (child in states or tuple(child) in explored):
                 continue
             else:
                 frontier.append((child, path+[child]))
-    return None
+    return None,len(explored)
 
 
 def DFS(board):
@@ -47,7 +47,7 @@ def DFS(board):
                 path.append(current)
                 current = pmap[tuple(current)]
             path.reverse()
-            return path
+            return path,len(explored)
         for child in main.children(state):
             if (tuple(child) in frontier_set or tuple(child) in explored):
                 continue
@@ -56,7 +56,7 @@ def DFS(board):
                 frontier_set.add(tuple(child))
                 depth[tuple(child)] = depth[tuple(state)] + 1
                 pmap[tuple(child)] = state
-    return None
+    return None,len(explored)
 
 
 def LDFS(board, L):
@@ -77,7 +77,7 @@ def LDFS(board, L):
                 path.append(current)
                 current = pmap[tuple(current)]
             path.reverse()
-            return path
+            return path,len(explored)
         for child in main.children(state):
             cd = depth[tuple(state)] + 1
             child_t = tuple(child)
@@ -96,15 +96,15 @@ def LDFS(board, L):
             frontier_set.add(tuple(child))
             depth[tuple(child)] = depth[tuple(state)] + 1
             pmap[tuple(child)] = state
-    return None
+    return None,len(explored)
 
 
 def IDFS(board):
     for L in range(32):  # if L ==32 -> board is unsolvable
-        path = LDFS(board, L)
+        path,explored_l = LDFS(board, L)
         if path is not None:
-            return path
-    return None
+            return path,explored_l
+    return None,explored_l
 
 def manhattanDistance(board):
 
@@ -146,7 +146,7 @@ def AStar_Manhattan(board):
     while frontier:
         f,c,state,path=heapq.heappop(frontier)
         if isGoal(state):
-            return path
+            return path,len(explored)
         explored.add(tuple(state))
         for child in main.children(state):
             if tuple(child) in explored:
@@ -159,7 +159,7 @@ def AStar_Manhattan(board):
                 counter = counter + 1 # counter since heaps break ties by comparing the next element
                 heapq.heappush(frontier, (cost, counter, child, path+[child]))
 
-    return None
+    return None,len(explored)
 
 
 def AStar_Euclidean(board):
@@ -174,7 +174,7 @@ def AStar_Euclidean(board):
     while frontier:
         f, c, state, path = heapq.heappop(frontier)
         if isGoal(state):
-            return path
+            return path,len(explored)
         explored.add(tuple(state))
         for child in main.children(state):
             if tuple(child) in explored:
@@ -187,13 +187,13 @@ def AStar_Euclidean(board):
                 counter = counter + 1  # counter since heaps break ties by comparing the next element
                 heapq.heappush(frontier, (cost, counter, child, path + [child]))
 
-    return None
+    return None,len(explored)
 
 if __name__ == "__main__":
-    board = [1, 2, 5,
-             3, 0, 4,
-             6, 7, 8]
-    path = (AStar_Euclidean(board))
+    board = [5, 1, 4,
+             8, 0, 2,
+             3, 6, 7]
+    path,expl = (BFS(board))
     if path is not None:
         for i,step in enumerate(path):
             print("step no",i)
@@ -201,3 +201,5 @@ if __name__ == "__main__":
             print()
     else:
         print("no path")
+    print("Explored: ", expl, "nodes")
+
