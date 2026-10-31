@@ -1,6 +1,6 @@
 import math
 from cmath import sqrt
-
+import heapq
 import main
 from collections import deque
 
@@ -134,3 +134,70 @@ def euclideanDistance(board):
         sum += h
     return sum
 
+def AStar_Manhattan(board):
+    counter=0
+    frontier = []
+    explored = set()
+    heapq.heappush(frontier, (manhattanDistance(board), counter, board, [board]))
+    #input manhattan distance, then counter for tie breaks, then the actual board, then the path to the board
+    gcost={tuple(board): 0}
+    #actual cost to board (step count)
+
+    while frontier:
+        f,c,state,path=heapq.heappop(frontier)
+        if isGoal(state):
+            return path
+        explored.add(tuple(state))
+        for child in main.children(state):
+            if tuple(child) in explored:
+                continue
+
+            costChild=len(path)
+            if tuple(child) not in gcost or costChild < gcost[tuple(child)]:
+                gcost[tuple(child)] = costChild #g(n)
+                cost= costChild + manhattanDistance(child) #f(n) = g(n)+ h(n)
+                counter = counter + 1 # counter since heaps break ties by comparing the next element
+                heapq.heappush(frontier, (cost, counter, child, path+[child]))
+
+    return None
+
+
+def AStar_Euclidean(board):
+    counter = 0
+    frontier = []
+    explored = set()
+    heapq.heappush(frontier, (euclideanDistance(board), counter, board, [board]))
+    # input manhattan distance, then counter for tie breaks, then the actual board, then the path to the board
+    gcost = {tuple(board): 0}
+    # actual cost to board (step count)
+
+    while frontier:
+        f, c, state, path = heapq.heappop(frontier)
+        if isGoal(state):
+            return path
+        explored.add(tuple(state))
+        for child in main.children(state):
+            if tuple(child) in explored:
+                continue
+
+            costChild = len(path)
+            if tuple(child) not in gcost or costChild < gcost[tuple(child)]:
+                gcost[tuple(child)] = costChild  # g(n)
+                cost = costChild + euclideanDistance(child)  # f(n) = g(n)+ h(n)
+                counter = counter + 1  # counter since heaps break ties by comparing the next element
+                heapq.heappush(frontier, (cost, counter, child, path + [child]))
+
+    return None
+
+if __name__ == "__main__":
+    board = [1, 2, 5,
+             3, 0, 4,
+             6, 7, 8]
+    path = (AStar_Euclidean(board))
+    if path is not None:
+        for i,step in enumerate(path):
+            print("step no",i)
+            print(main.p_board(step))
+            print()
+    else:
+        print("no path")
