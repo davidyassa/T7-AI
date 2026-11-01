@@ -1,4 +1,4 @@
-from Search_Algos import *
+from search_algos import *
 
 
 def moves(board, n=3):

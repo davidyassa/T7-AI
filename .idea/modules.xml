@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/T7-AI.iml" filepath="$PROJECT_DIR$/.idea/T7-AI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/term-7-artificial-intelligence.iml" filepath="$PROJECT_DIR$/.idea/term-7-artificial-intelligence.iml" />
     </modules>
   </component>
 </project>

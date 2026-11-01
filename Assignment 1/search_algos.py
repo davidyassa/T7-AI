@@ -1,4 +1,3 @@
-import math
 from cmath import sqrt
 import heapq
 import main
@@ -130,7 +129,7 @@ def euclideanDistance(board):
         hx = (x - xi)*(x- xi)
         hy = (y - yi)*(y-yi)
         h=hx+hy
-        h=math.sqrt(h)
+        h=sqrt(h)
         sum += h
     return sum
 
