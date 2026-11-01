@@ -1,4 +1,4 @@
-from Search_Algos import *
+from search_algos import *
 from pyboard import *
 
 if __name__ == "__main__":

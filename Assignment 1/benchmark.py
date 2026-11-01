@@ -1,12 +1,3 @@
-"""
-8-Puzzle Search Algorithms Benchmark Suite.
-Benchmarks BFS, DFS, IDFS, AStar_Manhattan, and AStar_Euclidean.
-Generates performance comparison tables and plots benchmark_chart.png.
-
-Run with: uv run python benchmark.py
-Or with custom board: uv run python benchmark.py --board "1,2,5,3,4,0,6,7,8"
-"""
-
 import sys
 import time
 import argparse
@@ -15,7 +6,7 @@ from typing import List
 # Import algorithms from Search_Algos
 try:
     try:
-        from Search_Algos import BFS, DFS, IDFS, AStar_Manhattan, AStar_Euclidean
+        from search_algos import BFS, DFS, IDFS, AStar_Manhattan, AStar_Euclidean
     except ImportError:
         from search_algos import BFS, DFS, IDFS, AStar_Manhattan, AStar_Euclidean
 except ImportError as e:

@@ -370,7 +370,7 @@ class MainWindow(QMainWindow):
 
         gc_layout.addWidget(QLabel("Initial Board (9 numbers, 0 is blank):"))
         inp_row = QHBoxLayout()
-        self.inp_array = QLineEdit("1,2,5,3,0,4,6,7,8")
+        self.inp_array = QLineEdit("1,2,5,3,4,0,6,7,8")
         self.inp_array.textChanged.connect(self._on_input_changed)
         inp_row.addWidget(self.inp_array, 1)
 
