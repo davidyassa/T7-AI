@@ -1,7 +1,8 @@
-from cmath import sqrt
 import heapq
-import main
+from math import sqrt
 from collections import deque
+
+from pyboard import *
 
 
 def isGoal(board):
@@ -18,14 +19,14 @@ def BFS(board):
         state, path = frontier.popleft()
         explored.add(tuple(state))
         if (isGoal(state)):
-            return path,len(explored)
-        for child in main.children(state):
+            return path, len(explored)
+        for child in children(state):
             states = [item[0] for item in frontier]
             if (child in states or tuple(child) in explored):
                 continue
             else:
                 frontier.append((child, path+[child]))
-    return None,len(explored)
+    return None, len(explored)
 
 
 def DFS(board):
@@ -46,8 +47,8 @@ def DFS(board):
                 path.append(current)
                 current = pmap[tuple(current)]
             path.reverse()
-            return path,len(explored)
-        for child in main.children(state):
+            return path, len(explored)
+        for child in children(state):
             if (tuple(child) in frontier_set or tuple(child) in explored):
                 continue
             else:
@@ -55,7 +56,7 @@ def DFS(board):
                 frontier_set.add(tuple(child))
                 depth[tuple(child)] = depth[tuple(state)] + 1
                 pmap[tuple(child)] = state
-    return None,len(explored)
+    return None, len(explored)
 
 
 def LDFS(board, L):
@@ -76,8 +77,8 @@ def LDFS(board, L):
                 path.append(current)
                 current = pmap[tuple(current)]
             path.reverse()
-            return path,len(explored)
-        for child in main.children(state):
+            return path, len(explored)
+        for child in children(state):
             cd = depth[tuple(state)] + 1
             child_t = tuple(child)
             if cd > L:
@@ -95,70 +96,84 @@ def LDFS(board, L):
             frontier_set.add(tuple(child))
             depth[tuple(child)] = depth[tuple(state)] + 1
             pmap[tuple(child)] = state
-    return None,len(explored)
+    return None, len(explored)
 
 
 def IDFS(board):
     for L in range(32):  # if L ==32 -> board is unsolvable
-        path,explored_l = LDFS(board, L)
+        path, explored_l = LDFS(board, L)
         if path is not None:
-            return path,explored_l
-    return None,explored_l
+            return path, explored_l
+    return None, explored_l
+
 
 def manhattanDistance(board):
-
-    sum=0
-    for i in (board):
-        n=board[i]
-        x=n%3
-        y=n//3
-        xi=i%3
-        yi=i//3
-        h=abs(x-xi)+abs(y-yi)
-        sum+=h
+    sum = 0
+    for i, n in enumerate(board):
+        if n == 0:
+            continue
+        x = n % 3
+        y = n//3
+        xi = i % 3
+        yi = i//3
+        h = abs(x-xi)+abs(y-yi)
+        sum += h
     return sum
+
 
 def euclideanDistance(board):
     sum = 0
-    for i in (board):
-        n = board[i]
+    for i, n in enumerate(board):
+        if n == 0:
+            continue
         x = n % 3
         y = n // 3
         xi = i % 3
         yi = i // 3
-        hx = (x - xi)*(x- xi)
-        hy = (y - yi)*(y-yi)
-        h=hx+hy
-        h=sqrt(h)
+        hx = (x - xi) ** 2
+        hy = (y - yi) ** 2
+        h = hx+hy
+        h = sqrt(h)
         sum += h
     return sum
 
+
+def euclideanDistance(board):
+    total = 0
+    for i, n in enumerate(board):
+        if n == 0:
+            continue
+        total += sqrt((n % 3 - i % 3) ** 2 + (n // 3 - i // 3) ** 2)
+    return total
+
+
 def AStar_Manhattan(board):
-    counter=0
+    counter = 0
     frontier = []
     explored = set()
     heapq.heappush(frontier, (manhattanDistance(board), counter, board, [board]))
-    #input manhattan distance, then counter for tie breaks, then the actual board, then the path to the board
-    gcost={tuple(board): 0}
-    #actual cost to board (step count)
+    # input manhattan distance, then counter for tie breaks, then the actual board, then the path to the board
+    gcost = {tuple(board): 0}
+    # actual cost to board (step count)
 
     while frontier:
-        f,c,state,path=heapq.heappop(frontier)
+        f, c, state, path = heapq.heappop(frontier)
         if isGoal(state):
-            return path,len(explored)
+            return path, len(explored)
         explored.add(tuple(state))
-        for child in main.children(state):
+        for child in children(state):
             if tuple(child) in explored:
                 continue
 
-            costChild=len(path)
+            costChild = len(path)
             if tuple(child) not in gcost or costChild < gcost[tuple(child)]:
-                gcost[tuple(child)] = costChild #g(n)
-                cost= costChild + manhattanDistance(child) #f(n) = g(n)+ h(n)
-                counter = counter + 1 # counter since heaps break ties by comparing the next element
+                gcost[tuple(child)] = costChild  # g(n)
+                # f(n) = g(n)+ h(n)
+                cost = costChild + manhattanDistance(child)
+                counter = counter + 1  # counter since heaps break ties by comparing the next element
                 heapq.heappush(frontier, (cost, counter, child, path+[child]))
 
-    return None,len(explored)
+    return None, len(explored)
 
 
 def AStar_Euclidean(board):
@@ -173,32 +188,34 @@ def AStar_Euclidean(board):
     while frontier:
         f, c, state, path = heapq.heappop(frontier)
         if isGoal(state):
-            return path,len(explored)
+            return path, len(explored)
         explored.add(tuple(state))
-        for child in main.children(state):
+        for child in children(state):
             if tuple(child) in explored:
                 continue
 
             costChild = len(path)
             if tuple(child) not in gcost or costChild < gcost[tuple(child)]:
                 gcost[tuple(child)] = costChild  # g(n)
-                cost = costChild + euclideanDistance(child)  # f(n) = g(n)+ h(n)
+                # f(n) = g(n)+ h(n)
+                cost = costChild + euclideanDistance(child)
                 counter = counter + 1  # counter since heaps break ties by comparing the next element
-                heapq.heappush(frontier, (cost, counter, child, path + [child]))
+                heapq.heappush(
+                    frontier, (cost, counter, child, path + [child]))
 
-    return None,len(explored)
+    return None, len(explored)
+
 
 if __name__ == "__main__":
     board = [5, 1, 4,
              8, 0, 2,
              3, 6, 7]
-    path,expl = (BFS(board))
+    path, expl = (BFS(board))
     if path is not None:
-        for i,step in enumerate(path):
-            print("step no",i)
-            print(main.p_board(step))
+        for i, step in enumerate(path):
+            print("step no", i)
+            print(p_board(step))
             print()
     else:
         print("no path")
     print("Explored: ", expl, "nodes")
-
