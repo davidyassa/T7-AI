@@ -2,7 +2,8 @@ class board:
 
     def __init__(self, l=6, w=7):
         if l < 6 or w < 7:
-            raise ValueError("Rows cant be less than 6 and columns cant be less than 7")
+            raise ValueError(
+                "Rows cant be less than 6 and columns cant be less than 7")
         self.rows = l
         self.cols = w
         self.grid = [[0] * self.cols for _ in range(self.rows)]
@@ -26,23 +27,35 @@ class board:
                     self.grid[i - 1][column] = player
                     return True
 
-    def fullBoard(self):
+    def isFull(self):
         for i in range(self.rows):
             for j in range(self.cols):
                 if self.grid[i][j] == 0:
                     return False
         return True
 
+    def moves(self):
+        res = [-1] * self.cols
+        for r in range(self.rows -1, 0 -1, -1):
+            if -1 not in res:
+                break
+            for c in range(self.cols):
+                if res[c] != -1 or self.grid[0][c] != 0:
+                    continue
+                if self.grid[r][c] == 0:
+                    res[c] = r
+        return res
 
-play = board()
-play.printBoard()
-play.play_move(1, 0)
-print("")
-play.printBoard()
-print("")
-play.play_move(1, 5)
-play.printBoard()
-print("")
-play.play_move(2, 0)
-play.printBoard()
 
+board1 = board()
+board1.printBoard()
+board1.play_move(1, 0)
+print()
+board1.printBoard()
+print()
+board1.play_move(1, 5)
+board1.printBoard()
+print()
+board1.play_move(2, 0)
+board1.printBoard()
+print(f"Borad is full: {board1.isFull()}")
