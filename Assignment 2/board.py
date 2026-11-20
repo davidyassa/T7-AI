@@ -2,8 +2,7 @@ class board:
 
     def __init__(self, l=6, w=7):
         if l < 6 or w < 7:
-            raise ValueError(
-                "Rows cant be less than 6 and columns cant be less than 7")
+            raise ValueError("Rows cant be less than 6 and columns cant be less than 7")
         self.rows = l
         self.cols = w
         self.grid = [[0] * self.cols for _ in range(self.rows)]
@@ -36,7 +35,7 @@ class board:
 
     def moves(self):
         res = [-1] * self.cols
-        for r in range(self.rows -1, 0 -1, -1):
+        for r in range(self.rows - 1, 0 - 1, -1):
             if -1 not in res:
                 break
             for c in range(self.cols):
@@ -45,3 +44,48 @@ class board:
                 if self.grid[r][c] == 0:
                     res[c] = r
         return res
+
+    def count_connect_fours(self, player):
+        count = 0
+
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if (
+                    self.grid[r][c] == player
+                    and self.grid[r + 1][c] == player
+                    and self.grid[r + 2][c] == player
+                    and self.grid[r + 3][c] == player
+                ):
+                    count += 1
+                    
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if (
+                    self.grid[r][c] == player
+                    and self.grid[r][c + 1] == player
+                    and self.grid[r][c + 2] == player
+                    and self.grid[r][c + 3] == player
+                ):
+                    count += 1
+                    
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if (
+                    self.grid[r][c] == player
+                    and self.grid[r + 1][c + 1] == player
+                    and self.grid[r + 2][c + 2] == player
+                    and self.grid[r + 3][c + 3] == player
+                ):
+                    count += 1
+                    
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if (
+                    self.grid[r][c] == player
+                    and self.grid[r - 1][c + 1] == player
+                    and self.grid[r - 2][c - 2] == player
+                    and self.grid[r - 3][c + 3] == player
+                ):
+                    count += 1
+                    
+        return count
