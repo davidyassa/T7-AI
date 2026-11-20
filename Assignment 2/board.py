@@ -26,6 +26,13 @@ class board:
                     self.grid[i - 1][column] = player
                     return True
 
+    def fullBoard(self):
+        for i in range(self.rows):
+            for j in range(self.cols):
+                if self.grid[i][j] == 0:
+                    return False
+        return True
+
 
 play = board()
 play.printBoard()
@@ -38,3 +45,4 @@ play.printBoard()
 print("")
 play.play_move(2, 0)
 play.printBoard()
+
