@@ -48,7 +48,7 @@ class board:
     def count_connect_fours(self, player):
         count = 0
 
-        for r in range(self.rows):
+        for r in range(self.rows - 3):
             for c in range(self.cols):
                 if (
                     self.grid[r][c] == player
@@ -57,9 +57,9 @@ class board:
                     and self.grid[r + 3][c] == player
                 ):
                     count += 1
-                    
+
         for r in range(self.rows):
-            for c in range(self.cols):
+            for c in range(self.cols - 3):
                 if (
                     self.grid[r][c] == player
                     and self.grid[r][c + 1] == player
@@ -67,9 +67,9 @@ class board:
                     and self.grid[r][c + 3] == player
                 ):
                     count += 1
-                    
-        for r in range(self.rows):
-            for c in range(self.cols):
+
+        for r in range(self.rows - 3):
+            for c in range(self.cols - 3):
                 if (
                     self.grid[r][c] == player
                     and self.grid[r + 1][c + 1] == player
@@ -77,15 +77,15 @@ class board:
                     and self.grid[r + 3][c + 3] == player
                 ):
                     count += 1
-                    
-        for r in range(self.rows):
-            for c in range(self.cols):
+
+        for r in range(3, self.rows):
+            for c in range(self.cols - 3):
                 if (
                     self.grid[r][c] == player
                     and self.grid[r - 1][c + 1] == player
-                    and self.grid[r - 2][c - 2] == player
+                    and self.grid[r - 2][c + 2] == player
                     and self.grid[r - 3][c + 3] == player
                 ):
                     count += 1
-                    
+
         return count
