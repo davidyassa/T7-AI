@@ -1,0 +1,675 @@
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[1, 0, 0, 0, 0, 0, 0]
+
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[1, 0, 0, 0, 0, 1, 0]
+
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
+[2, 0, 0, 0, 0, 0, 0]
+[1, 0, 0, 0, 0, 1, 0]
+Board is full: False
+
+minimax, K=2 (columns start at 0)
+MAX depth=0 value=-0.000857143
++- col=0 | MIN depth=1 value=-0.00171429
+|  +- col=0 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
++- col=1 | MIN depth=1 value=-0.00157143
+|  +- col=0 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
++- col=2 | MIN depth=1 value=-0.001
+|  +- col=0 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
++- col=3 | MIN depth=1 value=-0.000857143
+|  +- col=0 | MAX depth=2 value=0 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=0.000285714 (heuristic; K reached)
++- col=4 | MIN depth=1 value=-0.00128571
+|  +- col=0 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=-4.95635e-20 (heuristic; K reached)
++- col=5 | MIN depth=1 value=-0.00185714
+|  +- col=0 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+`- col=6 | MIN depth=1 value=-0.00171429
+   +- col=0 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+   +- col=1 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   +- col=2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+   +- col=3 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+   +- col=4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   +- col=5 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+   `- col=6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+Chosen column: 3
+Value: -0.000857143
+Nodes expanded: 8, visited: 57, leaves: 49
+Search time: 0.010105 seconds
+
+alpha_beta, K=2 (columns start at 0)
+MAX depth=0 value=-0.000857143
++- col=0 | MIN depth=1 value=-0.00171429
+|  +- col=0 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
++- col=1 | MIN depth=1 value=-0.00157143
+|  +- col=0 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
++- col=2 | MIN depth=1 value=-0.001
+|  +- col=0 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
++- col=3 | MIN depth=1 value=-0.000857143
+|  +- col=0 | MAX depth=2 value=0 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  +- col=4 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  +- col=5 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  `- col=6 | MAX depth=2 value=0.000285714 (heuristic; K reached)
++- col=4 | MIN depth=1 value=-0.000857143 (upper bound; alpha=-0.000857143, beta=-0.000857143)
+|  +- col=0 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  +- col=3 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  `- PRUNED columns=[4, 5, 6]
++- col=5 | MIN depth=1 value=-0.00114286 (upper bound; alpha=-0.000857143, beta=-0.00114286)
+|  +- col=0 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  +- col=1 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  +- col=2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  `- PRUNED columns=[3, 4, 5, 6]
+`- col=6 | MIN depth=1 value=-0.001 (upper bound; alpha=-0.000857143, beta=-0.001)
+   +- col=0 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+   +- col=1 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   `- PRUNED columns=[2, 3, 4, 5, 6]
+Chosen column: 3
+Value: -0.000857143
+Nodes expanded: 8, visited: 45, leaves: 37
+Search time: 0.004030 seconds
+
+expectiminimax, K=2 (columns start at 0)
+MAX depth=0 value=-0.000674286
++- choose col=0 | CHANCE depth=0 value=-0.00141714
+|  +- land col=0, p=0.6 | MIN depth=1 value=-0.00142857
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000514286
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.000571429
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.00102857
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.00142857
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.00108571
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000685714
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000457143
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  `- land col=1, p=0.4 | MIN depth=1 value=-0.0014
+|     +- choose col=0 | CHANCE depth=1 value=-0.000714286
+|     |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|     |  `- land col=1, p=0.4 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     +- choose col=1 | CHANCE depth=1 value=-0.000942857
+|     |  +- land col=1, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|     |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     +- choose col=2 | CHANCE depth=1 value=-0.00105714
+|     |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  +- land col=1, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|     +- choose col=3 | CHANCE depth=1 value=-0.0014
+|     |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|     |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|     +- choose col=4 | CHANCE depth=1 value=-0.0014
+|     |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|     |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|     |  `- land col=5, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     +- choose col=5 | CHANCE depth=1 value=-0.00111429
+|     |  +- land col=5, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|     |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     `- choose col=6 | CHANCE depth=1 value=-0.000885714
+|        +- land col=6, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|        `- land col=5, p=0.4 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
++- choose col=1 | CHANCE depth=0 value=-0.00129714
+|  +- land col=1, p=0.6 | MIN depth=1 value=-0.0014
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000714286
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.000942857
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.00105714
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.0014
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.0014
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.00111429
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000885714
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  +- land col=0, p=0.2 | MIN depth=1 value=-0.00142857
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000514286
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.000571429
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.00102857
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.00142857
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.00108571
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000685714
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000457143
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  `- land col=2, p=0.2 | MIN depth=1 value=-0.000857143
+|     +- choose col=0 | CHANCE depth=1 value=-0.000228571
+|     |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|     |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|     +- choose col=1 | CHANCE depth=1 value=-0.000314286
+|     |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|     |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|     |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     +- choose col=2 | CHANCE depth=1 value=-0.000714286
+|     |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|     |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     +- choose col=3 | CHANCE depth=1 value=-0.000828571
+|     |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  `- land col=4, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     +- choose col=4 | CHANCE depth=1 value=-0.0008
+|     |  +- land col=4, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  `- land col=5, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     +- choose col=5 | CHANCE depth=1 value=-0.000857143
+|     |  +- land col=5, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     |  +- land col=4, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     `- choose col=6 | CHANCE depth=1 value=-0.000742857
+|        +- land col=6, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|        `- land col=5, p=0.4 | MAX depth=2 value=-0.001 (heuristic; K reached)
++- choose col=2 | CHANCE depth=0 value=-0.000885714
+|  +- land col=2, p=0.6 | MIN depth=1 value=-0.000857143
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000228571
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.000314286
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.000714286
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.000828571
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.0008
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000857143
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000742857
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  +- land col=1, p=0.2 | MIN depth=1 value=-0.0014
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000714286
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.000942857
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.00105714
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.0014
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.0014
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.00111429
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00142857 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000885714
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  `- land col=3, p=0.2 | MIN depth=1 value=-0.000457143
+|     +- choose col=0 | CHANCE depth=1 value=5.71429e-05
+|     |  +- land col=0, p=0.6 | MAX depth=2 value=0 (heuristic; K reached)
+|     |  `- land col=1, p=0.4 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     +- choose col=1 | CHANCE depth=1 value=0.000114286
+|     |  +- land col=1, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     |  +- land col=0, p=0.2 | MAX depth=2 value=0 (heuristic; K reached)
+|     |  `- land col=2, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     +- choose col=2 | CHANCE depth=1 value=-5.71429e-05
+|     |  +- land col=2, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     |  +- land col=1, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     +- choose col=3 | CHANCE depth=1 value=-0.000457143
+|     |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  +- land col=2, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     |  `- land col=4, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     +- choose col=4 | CHANCE depth=1 value=-0.000228571
+|     |  +- land col=4, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  `- land col=5, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     +- choose col=5 | CHANCE depth=1 value=-0.000342857
+|     |  +- land col=5, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     |  +- land col=4, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|     |  `- land col=6, p=0.2 | MAX depth=2 value=0.000285714 (heuristic; K reached)
+|     `- choose col=6 | CHANCE depth=1 value=-0.000114286
+|        +- land col=6, p=0.6 | MAX depth=2 value=0.000285714 (heuristic; K reached)
+|        `- land col=5, p=0.4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
++- choose col=3 | CHANCE depth=0 value=-0.000674286
+|  +- land col=3, p=0.6 | MIN depth=1 value=-0.000457143
+|  |  +- choose col=0 | CHANCE depth=1 value=5.71429e-05
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=0 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=0.000114286
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=0 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-5.71429e-05
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.000457143
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.000228571
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000342857
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=0.000285714 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000114286
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=0.000285714 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  +- land col=2, p=0.2 | MIN depth=1 value=-0.000857143
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000228571
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.000314286
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.000714286
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.000828571
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.0008
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000857143
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000742857
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  `- land col=4, p=0.2 | MIN depth=1 value=-0.00114286
+|     +- choose col=0 | CHANCE depth=1 value=-0.000457143
+|     |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|     |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     +- choose col=1 | CHANCE depth=1 value=-0.000628571
+|     |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|     |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     +- choose col=2 | CHANCE depth=1 value=-0.000742857
+|     |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     +- choose col=3 | CHANCE depth=1 value=-0.000914286
+|     |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|     |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|     +- choose col=4 | CHANCE depth=1 value=-0.00114286
+|     |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|     |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|     |  `- land col=5, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     +- choose col=5 | CHANCE depth=1 value=-0.000857143
+|     |  +- land col=5, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|     |  `- land col=6, p=0.2 | MAX depth=2 value=-4.95635e-20 (heuristic; K reached)
+|     `- choose col=6 | CHANCE depth=1 value=-0.0004
+|        +- land col=6, p=0.6 | MAX depth=2 value=-4.95635e-20 (heuristic; K reached)
+|        `- land col=5, p=0.4 | MAX depth=2 value=-0.001 (heuristic; K reached)
++- choose col=4 | CHANCE depth=0 value=-0.00109143
+|  +- land col=4, p=0.6 | MIN depth=1 value=-0.00114286
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000457143
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.000628571
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.000742857
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.000914286
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.00114286
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000857143
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-4.95635e-20 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.0004
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-4.95635e-20 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  +- land col=3, p=0.2 | MIN depth=1 value=-0.000457143
+|  |  +- choose col=0 | CHANCE depth=1 value=5.71429e-05
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=0 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=0.000114286
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=0 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-5.71429e-05
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.000457143
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.000228571
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000342857
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=0.000142857 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=0.000285714 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000114286
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=0.000285714 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  `- land col=5, p=0.2 | MIN depth=1 value=-0.00157143
+|     +- choose col=0 | CHANCE depth=1 value=-0.000314286
+|     |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|     |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     +- choose col=1 | CHANCE depth=1 value=-0.0006
+|     |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|     |  `- land col=2, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     +- choose col=2 | CHANCE depth=1 value=-0.00117143
+|     |  +- land col=2, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+|     +- choose col=3 | CHANCE depth=1 value=-0.00157143
+|     |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+|     |  +- land col=2, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     +- choose col=4 | CHANCE depth=1 value=-0.00117143
+|     |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+|     |  `- land col=5, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     +- choose col=5 | CHANCE depth=1 value=-0.000657143
+|     |  +- land col=5, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|     |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|     `- choose col=6 | CHANCE depth=1 value=-0.000485714
+|        +- land col=6, p=0.6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|        `- land col=5, p=0.4 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
++- choose col=5 | CHANCE depth=0 value=-0.00148
+|  +- land col=5, p=0.6 | MIN depth=1 value=-0.00157143
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000314286
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.0006
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.00117143
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.00157143
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.00117143
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000657143
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.000485714
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|  +- land col=4, p=0.2 | MIN depth=1 value=-0.00114286
+|  |  +- choose col=0 | CHANCE depth=1 value=-0.000457143
+|  |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=1 | CHANCE depth=1 value=-0.000628571
+|  |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000285714 (heuristic; K reached)
+|  |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  +- choose col=2 | CHANCE depth=1 value=-0.000742857
+|  |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  +- choose col=3 | CHANCE depth=1 value=-0.000914286
+|  |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.000714286 (heuristic; K reached)
+|  |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|  |  +- choose col=4 | CHANCE depth=1 value=-0.00114286
+|  |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|  |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.000857143 (heuristic; K reached)
+|  |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  +- choose col=5 | CHANCE depth=1 value=-0.000857143
+|  |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|  |  |  `- land col=6, p=0.2 | MAX depth=2 value=-4.95635e-20 (heuristic; K reached)
+|  |  `- choose col=6 | CHANCE depth=1 value=-0.0004
+|  |     +- land col=6, p=0.6 | MAX depth=2 value=-4.95635e-20 (heuristic; K reached)
+|  |     `- land col=5, p=0.4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|  `- land col=6, p=0.2 | MIN depth=1 value=-0.00154286
+|     +- choose col=0 | CHANCE depth=1 value=-0.000742857
+|     |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     |  `- land col=1, p=0.4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     +- choose col=1 | CHANCE depth=1 value=-0.00102857
+|     |  +- land col=1, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     |  `- land col=2, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|     +- choose col=2 | CHANCE depth=1 value=-0.00148571
+|     |  +- land col=2, p=0.6 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|     |  +- land col=1, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|     +- choose col=3 | CHANCE depth=1 value=-0.00154286
+|     |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|     |  +- land col=2, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+|     |  `- land col=4, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     +- choose col=4 | CHANCE depth=1 value=-0.0012
+|     |  +- land col=4, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+|     |  `- land col=5, p=0.2 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|     +- choose col=5 | CHANCE depth=1 value=-0.00108571
+|     |  +- land col=5, p=0.6 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+|     |  +- land col=4, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+|     |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|     `- choose col=6 | CHANCE depth=1 value=-0.000857143
+|        +- land col=6, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+|        `- land col=5, p=0.4 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+`- choose col=6 | CHANCE depth=0 value=-0.00155429
+   +- land col=6, p=0.6 | MIN depth=1 value=-0.00154286
+   |  +- choose col=0 | CHANCE depth=1 value=-0.000742857
+   |  |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+   |  |  `- land col=1, p=0.4 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   |  +- choose col=1 | CHANCE depth=1 value=-0.00102857
+   |  |  +- land col=1, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   |  |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+   |  |  `- land col=2, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+   |  +- choose col=2 | CHANCE depth=1 value=-0.00148571
+   |  |  +- land col=2, p=0.6 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+   |  |  +- land col=1, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   |  |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+   |  +- choose col=3 | CHANCE depth=1 value=-0.00154286
+   |  |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+   |  |  +- land col=2, p=0.2 | MAX depth=2 value=-0.00157143 (heuristic; K reached)
+   |  |  `- land col=4, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   |  +- choose col=4 | CHANCE depth=1 value=-0.0012
+   |  |  +- land col=4, p=0.6 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   |  |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00171429 (heuristic; K reached)
+   |  |  `- land col=5, p=0.2 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+   |  +- choose col=5 | CHANCE depth=1 value=-0.00108571
+   |  |  +- land col=5, p=0.6 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+   |  |  +- land col=4, p=0.2 | MAX depth=2 value=-0.001 (heuristic; K reached)
+   |  |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+   |  `- choose col=6 | CHANCE depth=1 value=-0.000857143
+   |     +- land col=6, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+   |     `- land col=5, p=0.4 | MAX depth=2 value=-0.00128571 (heuristic; K reached)
+   `- land col=5, p=0.4 | MIN depth=1 value=-0.00157143
+      +- choose col=0 | CHANCE depth=1 value=-0.000314286
+      |  +- land col=0, p=0.6 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+      |  `- land col=1, p=0.4 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+      +- choose col=1 | CHANCE depth=1 value=-0.0006
+      |  +- land col=1, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+      |  +- land col=0, p=0.2 | MAX depth=2 value=-0.000142857 (heuristic; K reached)
+      |  `- land col=2, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+      +- choose col=2 | CHANCE depth=1 value=-0.00117143
+      |  +- land col=2, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+      |  +- land col=1, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+      |  `- land col=3, p=0.2 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+      +- choose col=3 | CHANCE depth=1 value=-0.00157143
+      |  +- land col=3, p=0.6 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+      |  +- land col=2, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+      |  `- land col=4, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+      +- choose col=4 | CHANCE depth=1 value=-0.00117143
+      |  +- land col=4, p=0.6 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+      |  +- land col=3, p=0.2 | MAX depth=2 value=-0.00185714 (heuristic; K reached)
+      |  `- land col=5, p=0.2 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+      +- choose col=5 | CHANCE depth=1 value=-0.000657143
+      |  +- land col=5, p=0.6 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+      |  +- land col=4, p=0.2 | MAX depth=2 value=-0.00114286 (heuristic; K reached)
+      |  `- land col=6, p=0.2 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+      `- choose col=6 | CHANCE depth=1 value=-0.000485714
+         +- land col=6, p=0.6 | MAX depth=2 value=-0.000428571 (heuristic; K reached)
+         `- land col=5, p=0.4 | MAX depth=2 value=-0.000571429 (heuristic; K reached)
+Chosen column: 3
+Value: -0.000674286
+Nodes expanded: 160, visited: 521, leaves: 361
+Search time: 0.038963 seconds
+Example sampled landing column: 2
+
+Each search used the same board; the demo did not apply the AI move.

@@ -1,0 +1,29 @@
+test_each_direction_and_overlapping_fours (test_algos.EvaluationTests.test_each_direction_and_overlapping_fours) ... ok
+test_empty_board_is_neutral (test_algos.EvaluationTests.test_empty_board_is_neutral) ... ok
+test_full_board_scores_every_window (test_algos.EvaluationTests.test_full_board_scores_every_window) ... ok
+test_full_neighbors (test_algos.ProbabilityTests.test_full_neighbors) ... ok
+test_invalid_intended_column (test_algos.ProbabilityTests.test_invalid_intended_column) ... ok
+test_middle_and_edge (test_algos.ProbabilityTests.test_middle_and_edge) ... ok
+test_sampler_uses_the_same_distribution (test_algos.ProbabilityTests.test_sampler_uses_the_same_distribution) ... ok
+test_ai_only_chance_matches_reference (test_algos.SearchTests.test_ai_only_chance_matches_reference) ... ok
+test_algorithm_wrappers (test_algos.SearchTests.test_algorithm_wrappers) ... ok
+test_bad_arguments (test_algos.SearchTests.test_bad_arguments) ... ok
+test_both_board_interfaces (test_algos.SearchTests.test_both_board_interfaces) ... ok
+test_chance_nodes_do_not_consume_depth (test_algos.SearchTests.test_chance_nodes_do_not_consume_depth) ... ok
+test_default_call_prints_the_returned_tree (test_algos.SearchTests.test_default_call_prints_the_returned_tree) ... ok
+test_exact_minimax_node_counts (test_algos.SearchTests.test_exact_minimax_node_counts) ... ok
+test_four_does_not_end_search (test_algos.SearchTests.test_four_does_not_end_search) ... ok
+test_full_board_returns_no_move (test_algos.SearchTests.test_full_board_returns_no_move) ... ok
+test_input_is_unchanged_for_every_algorithm (test_algos.SearchTests.test_input_is_unchanged_for_every_algorithm) ... ok
+test_no_stochastic_players_matches_minimax (test_algos.SearchTests.test_no_stochastic_players_matches_minimax) ... ok
+test_one_legal_move (test_algos.SearchTests.test_one_legal_move) ... ok
+test_pruning_reduces_work_and_prints_cutoffs (test_algos.SearchTests.test_pruning_reduces_work_and_prints_cutoffs) ... ok
+test_searches_match_exhaustive_reference (test_algos.SearchTests.test_searches_match_exhaustive_reference) ... ok
+test_ties_choose_leftmost_legal_column (test_algos.SearchTests.test_ties_choose_leftmost_legal_column) ... ok
+test_trace_has_values_probabilities_and_player_types (test_algos.SearchTests.test_trace_has_values_probabilities_and_player_types) ... ok
+test_tracing_can_be_disabled_for_benchmarks (test_algos.SearchTests.test_tracing_can_be_disabled_for_benchmarks) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.283s
+
+OK

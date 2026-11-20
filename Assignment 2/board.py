@@ -45,17 +45,3 @@ class board:
                 if self.grid[r][c] == 0:
                     res[c] = r
         return res
-
-
-board1 = board()
-board1.printBoard()
-board1.play_move(1, 0)
-print()
-board1.printBoard()
-print()
-board1.play_move(1, 5)
-board1.printBoard()
-print()
-board1.play_move(2, 0)
-board1.printBoard()
-print(f"Borad is full: {board1.isFull()}")
