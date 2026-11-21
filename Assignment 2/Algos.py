@@ -211,7 +211,7 @@ class _Search:
         return expected_value, node
 
 
-def get_best_move(board, algorithm, max_depth, *, evaluate_fn=None,
+def get_best_move(board, algorithm, max_depth, *, evaluate_fn=evaluate,
                   print_tree=True, collect_trace=True,
                   stochastic_players=(HUMAN, AI)):
     """Choose an AI move without modifying board.
