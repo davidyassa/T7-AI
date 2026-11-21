@@ -89,3 +89,94 @@ class board:
                     count += 1
 
         return count
+
+    def count_threats(b, player): #3 in a row return 1 if playable , 0.3 if next turn
+        score = 0.0
+
+        
+        for r in range(b.rows - 3):
+            for c in range(b.cols):
+                cells = [b.grid[r][c], b.grid[r + 1][c], b.grid[r + 2][c], b.grid[r + 3][c]]
+                if cells.count(player) == 3 and cells.count(0) == 1:
+                    er = r + cells.index(0)
+                    if er == b.rows - 1 or b.grid[er + 1][c] != 0:
+                        score += 1.0
+                    else:
+                        score += 0.3
+
+        
+        for r in range(b.rows):
+            for c in range(b.cols - 3):
+                cells = [b.grid[r][c], b.grid[r][c + 1], b.grid[r][c + 2], b.grid[r][c + 3]]
+                if cells.count(player) == 3 and cells.count(0) == 1:
+                    ec = c + cells.index(0)
+                    if r == b.rows - 1 or b.grid[r + 1][ec] != 0:
+                        score += 1.0
+                    else:
+                        score += 0.3
+
+        
+        for r in range(b.rows - 3):
+            for c in range(b.cols - 3):
+                cells = [b.grid[r][c], b.grid[r + 1][c + 1], b.grid[r + 2][c + 2], b.grid[r + 3][c + 3]]
+                if cells.count(player) == 3 and cells.count(0) == 1:
+                    idx = cells.index(0)
+                    er, ec = r + idx, c + idx
+                    if er == b.rows - 1 or b.grid[er + 1][ec] != 0:
+                        score += 1.0
+                    else:
+                        score += 0.3
+
+        
+        for r in range(3, b.rows):
+            for c in range(b.cols - 3):
+                cells = [b.grid[r][c], b.grid[r - 1][c + 1], b.grid[r - 2][c + 2], b.grid[r - 3][c + 3]]
+                if cells.count(player) == 3 and cells.count(0) == 1:
+                    idx = cells.index(0)
+                    er, ec = r - idx, c + idx
+                    if er == b.rows - 1 or b.grid[er + 1][ec] != 0:
+                        score += 1.0
+                    else:
+                        score += 0.3
+
+        return score 
+    
+    def count_forks(b, player): # forks are empty cells that complete 2 or more 3 in a rows at once
+        hits = [[0] * b.cols for _ in range(b.rows)]
+
+        
+        for r in range(b.rows - 3):
+            for c in range(b.cols):
+                cells = [b.grid[r][c], b.grid[r + 1][c], b.grid[r + 2][c], b.grid[r + 3][c]]
+                if cells.count(player) == 3 and cells.count(0) == 1:
+                    hits[r + cells.index(0)][c] += 1
+
+  
+        for r in range(b.rows):
+            for c in range(b.cols - 3):
+                cells = [b.grid[r][c], b.grid[r][c + 1], b.grid[r][c + 2], b.grid[r][c + 3]]
+                if cells.count(player) == 3 and cells.count(0) == 1:
+                    hits[r][c + cells.index(0)] += 1
+
+        
+        for r in range(b.rows - 3):
+            for c in range(b.cols - 3):
+                cells = [b.grid[r][c], b.grid[r + 1][c + 1], b.grid[r + 2][c + 2], b.grid[r + 3][c + 3]]
+                if cells.count(player) == 3 and cells.count(0) == 1:
+                    idx = cells.index(0)
+                    hits[r + idx][c + idx] += 1
+
+        
+        for r in range(3, b.rows):
+            for c in range(b.cols - 3):
+                cells = [b.grid[r][c], b.grid[r - 1][c + 1], b.grid[r - 2][c + 2], b.grid[r - 3][c + 3]]
+                if cells.count(player) == 3 and cells.count(0) == 1:
+                    idx = cells.index(0)
+                    hits[r - idx][c + idx] += 1
+
+        forks = 0
+        for r in range(b.rows):
+            for c in range(b.cols):
+                if hits[r][c] >= 2:
+                    forks += 1
+        return forks

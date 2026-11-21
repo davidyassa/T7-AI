@@ -8,6 +8,7 @@ from math import inf, isfinite
 from numbers import Integral
 import random
 from time import perf_counter
+import board
 
 from TreeTrace import TreeNode, format_tree
 
@@ -50,27 +51,11 @@ def _windows(grid):
                            for step in range(4)]
 
 
-def default_evaluate(board):
-    """A small fallback until Student 2 supplies the final heuristic.
-
-    Completed fours count as one point each, including overlapping fours.
-    Open windows break ties; their combined contribution stays below one point.
-    On a full board this is exactly AI's score minus the human's score.
-    """
-    score, potential, window_count = 0, 0.0, 0
-    weights = {1: 0.01, 2: 0.05, 3: 0.3}
-    for window in _windows(board.grid):
-        window_count += 1
-        ai, human = window.count(AI), window.count(HUMAN)
-        if ai == 4:
-            score += 1
-        elif human == 4:
-            score -= 1
-        elif human == 0:
-            potential += weights.get(ai, 0.0)
-        elif ai == 0:
-            potential -= weights.get(human, 0.0)
-    return score + potential / (window_count + 1)
+def evaluate(board):
+    eval_fours=board.count_connect_fours(2) - board.count_connect_fours(1)
+    eval_threats= board.count_threats(2) - 1.1*board.count_threats(1)
+    eval_forks= board.count_forks(2) - board.count_forks(1)
+    return (1000*eval_fours + 200*eval_threats + 50*eval_forks)
 
 
 def landing_probabilities(board, chosen_col):
