@@ -3,7 +3,7 @@
 import csv
 import random
 
-from Algos import get_best_move, sample_landing_column
+from Algos import get_best_move, sample_landing_column, evaluate
 from board import board
 
 
@@ -100,6 +100,83 @@ def main(algorithm="all", depth=2, show_tree=True, board_only=False,
                         show_tree, stochastic_players)
 
 
+def play_game():
+    rows = int(input("Enter rows (>= 6): ") or 6)
+    cols = int(input("Enter columns (>= 7): ") or 7)
+    depth = int(input("Enter max depth K (>= 1): ") or 3)
+    print("Algorithms: 1 = minimax | 2 = alpha_beta | 3 = expectiminimax")
+    choice = input("Choose algorithm (1/2/3): ").strip()
+    algo_map = {"1": "minimax", "2": "alpha_beta", "3": "expectiminimax"}
+    algorithm = algo_map.get(choice, "alpha_beta")
+
+    game = board(rows, cols)
+    print(f"\nStarting Connect 4 ({rows}x{cols}) | Algorithm: {algorithm} | K={depth}")
+    game.printBoard()
+    print(f"Initial Board Heuristic: {evaluate(game):.2f}")
+
+    while not game.isFull():
+        # --- Human Turn (Player 1) ---
+        valid_cols = [c for c, r in enumerate(game.moves()) if r != -1]
+        while True:
+            try:
+                col = int(input(f"\nHuman turn - choose column {valid_cols}: "))
+                if col in valid_cols:
+                    break
+            except ValueError:
+                pass
+            print("Invalid column. Try again.")
+
+        if algorithm == "expectiminimax":
+            actual_col = sample_landing_column(game, col)
+            print(f"Human chose col {col} -> disc landed in col {actual_col}")
+            game.play_move(1, actual_col)
+        else:
+            game.play_move(1, col)
+
+        game.printBoard()
+        print(f"Board Heuristic after Human move: {evaluate(game):.2f}")
+
+        if game.isFull():
+            break
+
+        # --- AI Turn (Player 2) ---
+        print("\nAI thinking...")
+        result = get_best_move(
+            game,
+            algorithm,
+            depth,
+            evaluate_fn=evaluate,
+            print_tree=True,
+        )
+        chosen = result["best_col"]
+
+        if algorithm == "expectiminimax":
+            actual_col = sample_landing_column(game, chosen)
+            print(f"AI chose col {chosen} -> disc landed in col {actual_col}")
+            game.play_move(2, actual_col)
+        else:
+            print(f"AI chose col {chosen}")
+            game.play_move(2, chosen)
+
+        game.printBoard()
+        print(f"Board Heuristic after AI move: {evaluate(game):.2f} | "
+              f"Search Root Value: {result['heuristic_value']:.2f}")
+        print(f"Nodes Expanded: {result['nodes_expanded']} | "
+              f"Time: {result['time_taken']:.4f}s")
+
+    # --- Game Over: Count Connected-Fours ---
+    human_score = game.count_connect_fours(1)
+    ai_score = game.count_connect_fours(2)
+    print("\n=== BOARD FULL - FINAL SCORE ===")
+    print(f"Human Connected-4s: {human_score} | AI Connected-4s: {ai_score}")
+    if ai_score > human_score:
+        print("Winner: AI")
+    elif human_score > ai_score:
+        print("Winner: Human")
+    else:
+        print("Result: Draw")
+        
+        
 if __name__ == "__main__":
     # Change these arguments to choose what you want to run.
     main(
@@ -110,5 +187,7 @@ if __name__ == "__main__":
         run_benchmark=False,
         benchmark_depths=(1, 2, 3),
         csv_path=None,                # e.g. "examples/benchmark.csv"
-        stochastic_players=(1, 2),    # (2,) for chance on AI moves only
+        stochastic_players=(1, 2),      # (2,) for chance on AI moves only
+        
     )
+    play_game()
