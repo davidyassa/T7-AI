@@ -12,7 +12,6 @@ import board
 
 from TreeTrace import TreeNode, format_tree
 
-
 HUMAN = 1
 AI = 2
 
@@ -47,15 +46,14 @@ def _windows(grid):
             for dr, dc in ((0, 1), (1, 0), (1, 1), (1, -1)):
                 end_row, end_col = row + 3 * dr, col + 3 * dc
                 if 0 <= end_row < rows and 0 <= end_col < cols:
-                    yield [grid[row + step * dr][col + step * dc]
-                           for step in range(4)]
+                    yield [grid[row + step * dr][col + step * dc] for step in range(4)]
 
 
 def evaluate(board):
-    eval_fours=board.count_connect_fours(2) - board.count_connect_fours(1)
-    eval_threats= board.count_threats(2) - 1.1*board.count_threats(1)
-    eval_forks= board.count_forks(2) - board.count_forks(1)
-    return (1000*eval_fours + 200*eval_threats + 50*eval_forks)
+    eval_fours = board.count_connect_fours(2) - board.count_connect_fours(1)
+    eval_threats = board.count_threats(2) - 1.1 * board.count_threats(1)
+    eval_forks = board.count_forks(2) - board.count_forks(1)
+    return 1000 * eval_fours + 200 * eval_threats + 50 * eval_forks
 
 
 def landing_probabilities(board, chosen_col):
@@ -65,8 +63,11 @@ def landing_probabilities(board, chosen_col):
     0.4; if both are unavailable, the chosen column gets all the probability.
     """
     valid = _valid_columns(board)
-    if (isinstance(chosen_col, bool) or not isinstance(chosen_col, Integral)
-            or chosen_col not in valid):
+    if (
+        isinstance(chosen_col, bool)
+        or not isinstance(chosen_col, Integral)
+        or chosen_col not in valid
+    ):
         raise ValueError("Choose a non-full column inside the board")
     neighbors = [col for col in (chosen_col - 1, chosen_col + 1) if col in valid]
     if not neighbors:
@@ -120,8 +121,9 @@ class _Search:
             node.note = "heuristic; K reached" if valid else "terminal; board full"
         return value
 
-    def minimax(self, board, depth, player, alpha=-inf, beta=inf,
-                pruning=False, edge=""):
+    def minimax(
+        self, board, depth, player, alpha=-inf, beta=inf, pruning=False, edge=""
+    ):
         node = self._node("MAX" if player == AI else "MIN", depth, edge)
         valid = _valid_columns(board)
         leaf_value = self._leaf_value(board, depth, valid, node)
@@ -134,14 +136,21 @@ class _Search:
         for index, col in enumerate(valid):
             child = _child_board(board, col, player)
             value, _, child_node = self.minimax(
-                child, depth + 1, 3 - player, alpha, beta, pruning,
+                child,
+                depth + 1,
+                3 - player,
+                alpha,
+                beta,
+                pruning,
                 edge=f"col={col}",
             )
             if node is not None:
                 node.children.append(child_node)
-            if (best_col is None
-                    or (player == AI and value > best_value)
-                    or (player == HUMAN and value < best_value)):
+            if (
+                best_col is None
+                or (player == AI and value > best_value)
+                or (player == HUMAN and value < best_value)
+            ):
                 best_value, best_col = value, col
 
             if pruning:
@@ -150,12 +159,13 @@ class _Search:
                 else:
                     beta = min(beta, best_value)
                 if alpha >= beta:
-                    skipped = valid[index + 1:]
+                    skipped = valid[index + 1 :]
                     self.stats.pruned_branches += len(skipped)
                     if node is not None:
                         bound = "lower" if player == AI else "upper"
-                        node.note = (f"{bound} bound; alpha={alpha:.6g}, "
-                                     f"beta={beta:.6g}")
+                        node.note = (
+                            f"{bound} bound; alpha={alpha:.6g}, " f"beta={beta:.6g}"
+                        )
                         node.pruned_columns = skipped
                     break
 
@@ -179,13 +189,18 @@ class _Search:
             else:
                 child = _child_board(board, col, player)
                 value, _, child_node = self.expectiminimax(
-                    child, depth + 1, 3 - player, edge=f"col={col}",
+                    child,
+                    depth + 1,
+                    3 - player,
+                    edge=f"col={col}",
                 )
             if node is not None:
                 node.children.append(child_node)
-            if (best_col is None
-                    or (player == AI and value > best_value)
-                    or (player == HUMAN and value < best_value)):
+            if (
+                best_col is None
+                or (player == AI and value > best_value)
+                or (player == HUMAN and value < best_value)
+            ):
                 best_value, best_col = value, col
 
         if node is not None:
@@ -200,7 +215,9 @@ class _Search:
         for actual_col, probability in landing_probabilities(board, chosen_col):
             child = _child_board(board, actual_col, player)
             value, _, child_node = self.expectiminimax(
-                child, depth + 1, 3 - player,
+                child,
+                depth + 1,
+                3 - player,
                 edge=f"land col={actual_col}, p={probability:g}",
             )
             expected_value += probability * value
@@ -211,9 +228,16 @@ class _Search:
         return expected_value, node
 
 
-def get_best_move(board, algorithm, max_depth, *, evaluate_fn=evaluate,
-                  print_tree=True, collect_trace=True,
-                  stochastic_players=(HUMAN, AI)):
+def get_best_move(
+    board,
+    algorithm,
+    max_depth,
+    *,
+    evaluate_fn=evaluate,
+    print_tree=True,
+    collect_trace=True,
+    stochastic_players=(AI,),
+):
     """Choose an AI move without modifying board.
 
     K counts discs placed, with the root at depth zero. Both players' moves are
@@ -227,20 +251,29 @@ def get_best_move(board, algorithm, max_depth, *, evaluate_fn=evaluate,
     Pass Student 2's evaluate(board) as evaluate_fn. It must use AI's perspective
     and return the final score difference (in compatible units) on a full board.
     """
-    if (isinstance(max_depth, bool) or not isinstance(max_depth, Integral)
-            or max_depth < 1):
+    if (
+        isinstance(max_depth, bool)
+        or not isinstance(max_depth, Integral)
+        or max_depth < 1
+    ):
         raise ValueError("max_depth must be an integer of at least 1")
     if not isinstance(algorithm, str):
         raise ValueError("algorithm must be a string")
     name = algorithm.strip().lower().replace("-", "_").replace(" ", "_")
-    aliases = {"alphabeta": "alpha_beta", "expected_minimax": "expectiminimax",
-               "expecti_minimax": "expectiminimax"}
+    aliases = {
+        "alphabeta": "alpha_beta",
+        "expected_minimax": "expectiminimax",
+        "expecti_minimax": "expectiminimax",
+    }
     name = aliases.get(name, name)
     if name not in ("minimax", "alpha_beta", "expectiminimax"):
         raise ValueError("Choose minimax, alpha_beta, or expectiminimax")
     if print_tree and not collect_trace:
         raise ValueError("Printing a tree requires collect_trace=True")
-    stochastic_players = tuple(stochastic_players)
+    if isinstance(stochastic_players, Integral) and not isinstance(stochastic_players, bool):
+        stochastic_players = (stochastic_players,)
+    else:
+        stochastic_players = tuple(stochastic_players)
     if any(isinstance(p, bool) or p not in (HUMAN, AI)
            for p in stochastic_players):
         raise ValueError("stochastic_players may contain only HUMAN and AI")

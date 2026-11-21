@@ -6,7 +6,6 @@ import random
 from Algos import get_best_move, sample_landing_column, evaluate
 from board import board
 
-
 ALGORITHMS = ("minimax", "alpha_beta", "expectiminimax")
 
 
@@ -38,18 +37,25 @@ def search_demo(position, algorithms, depth, show_tree, stochastic_players):
     for algorithm in algorithms:
         print(f"\n{algorithm}, K={depth} (columns start at 0)")
         result = get_best_move(
-            position, algorithm, depth, print_tree=show_tree,
+            position,
+            algorithm,
+            depth,
+            print_tree=show_tree,
             stochastic_players=stochastic_players,
         )
         print(f"Chosen column: {result['best_col']}")
         print(f"Value: {result['heuristic_value']:.6g}")
-        print(f"Nodes expanded: {result['nodes_expanded']}, "
-              f"visited: {result['nodes_visited']}, "
-              f"leaves: {result['leaves_evaluated']}")
+        print(
+            f"Nodes expanded: {result['nodes_expanded']}, "
+            f"visited: {result['nodes_visited']}, "
+            f"leaves: {result['leaves_evaluated']}"
+        )
         print(f"Search time: {result['time_taken']:.6f} seconds")
         if algorithm == "expectiminimax" and result["best_col"] is not None:
             actual_col = sample_landing_column(
-                position, result["best_col"], rng=random.Random(42),
+                position,
+                result["best_col"],
+                rng=random.Random(42),
             )
             print(f"Example sampled landing column: {actual_col}")
     print("\nEach search used the same board; the demo did not apply the AI move.")
@@ -58,21 +64,30 @@ def search_demo(position, algorithms, depth, show_tree, stochastic_players):
 def benchmark(position, algorithms, depths, stochastic_players, csv_path=None):
     """Use the same board and evaluator for every algorithm and depth."""
     records = []
-    print("\nAlgorithm           K   Expanded   Visited     Seconds    Column       Value")
+    print(
+        "\nAlgorithm           K   Expanded   Visited     Seconds    Column       Value"
+    )
     for depth in depths:
         for algorithm in algorithms:
             result = get_best_move(
-                position, algorithm, depth, print_tree=False, collect_trace=False,
+                position,
+                algorithm,
+                depth,
+                print_tree=False,
+                collect_trace=False,
                 stochastic_players=stochastic_players,
             )
             record = {"algorithm": algorithm, "K": depth}
-            record.update({key: value for key, value in result.items()
-                           if key != "tree_trace"})
+            record.update(
+                {key: value for key, value in result.items() if key != "tree_trace"}
+            )
             records.append(record)
-            print(f"{algorithm:<19} {depth:>2} "
-                  f"{result['nodes_expanded']:>10} {result['nodes_visited']:>9} "
-                  f"{result['time_taken']:>11.6f} {str(result['best_col']):>9} "
-                  f"{result['heuristic_value']:>11.6g}")
+            print(
+                f"{algorithm:<19} {depth:>2} "
+                f"{result['nodes_expanded']:>10} {result['nodes_visited']:>9} "
+                f"{result['time_taken']:>11.6f} {str(result['best_col']):>9} "
+                f"{result['heuristic_value']:>11.6g}"
+            )
     if csv_path:
         with open(csv_path, "w", newline="", encoding="utf-8") as target:
             writer = csv.DictWriter(target, fieldnames=list(records[0]))
@@ -82,22 +97,29 @@ def benchmark(position, algorithms, depths, stochastic_players, csv_path=None):
     return records
 
 
-def main(algorithm="all", depth=2, show_tree=True, board_only=False,
-         run_benchmark=False, benchmark_depths=(1, 2, 3), csv_path=None,
-         stochastic_players=(1, 2)):
+def main(
+    algorithm="all",
+    depth=2,
+    show_tree=True,
+    board_only=False,
+    run_benchmark=False,
+    benchmark_depths=(1, 2, 3),
+    csv_path=None,
+    stochastic_players=(2,),
+):
     if algorithm not in ("all",) + ALGORITHMS:
         raise ValueError("Choose all, minimax, alpha_beta, or expectiminimax")
     if depth < 1 or not benchmark_depths or any(k < 1 for k in benchmark_depths):
         raise ValueError("Depths must be at least 1")
     algorithms = ALGORITHMS if algorithm == "all" else (algorithm,)
     if run_benchmark:
-        benchmark(sample_board(), algorithms, benchmark_depths,
-                  stochastic_players, csv_path)
+        benchmark(
+            sample_board(), algorithms, benchmark_depths, stochastic_players, csv_path
+        )
     else:
         position = board_demo()
         if not board_only:
-            search_demo(position, algorithms, depth,
-                        show_tree, stochastic_players)
+            search_demo(position, algorithms, depth, show_tree, stochastic_players)
 
 
 def play_game():
@@ -126,12 +148,7 @@ def play_game():
                 pass
             print("Invalid column. Try again.")
 
-        if algorithm == "expectiminimax":
-            actual_col = sample_landing_column(game, col)
-            print(f"Human chose col {col} -> disc landed in col {actual_col}")
-            game.play_move(1, actual_col)
-        else:
-            game.play_move(1, col)
+        game.play_move(1, col)
 
         game.printBoard()
         print(f"Board Heuristic after Human move: {evaluate(game):.2f}")
@@ -147,6 +164,7 @@ def play_game():
             depth,
             evaluate_fn=evaluate,
             print_tree=True,
+            stochastic_players=(2,),
         )
         chosen = result["best_col"]
 
@@ -159,10 +177,14 @@ def play_game():
             game.play_move(2, chosen)
 
         game.printBoard()
-        print(f"Board Heuristic after AI move: {evaluate(game):.2f} | "
-              f"Search Root Value: {result['heuristic_value']:.2f}")
-        print(f"Nodes Expanded: {result['nodes_expanded']} | "
-              f"Time: {result['time_taken']:.4f}s")
+        print(
+            f"Board Heuristic after AI move: {evaluate(game):.2f} | "
+            f"Search Root Value: {result['heuristic_value']:.2f}"
+        )
+        print(
+            f"Nodes Expanded: {result['nodes_expanded']} | "
+            f"Time: {result['time_taken']:.4f}s"
+        )
 
     # --- Game Over: Count Connected-Fours ---
     human_score = game.count_connect_fours(1)
@@ -175,19 +197,18 @@ def play_game():
         print("Winner: Human")
     else:
         print("Result: Draw")
-        
-        
+
+
 if __name__ == "__main__":
     # Change these arguments to choose what you want to run.
     main(
-        algorithm="all",              # minimax, alpha_beta, expectiminimax, or all
+        algorithm="all",  # minimax, alpha_beta, expectiminimax, or all
         depth=2,
         show_tree=True,
         board_only=False,
         run_benchmark=False,
         benchmark_depths=(1, 2, 3),
-        csv_path=None,                # e.g. "examples/benchmark.csv"
-        stochastic_players=(1, 2),      # (2,) for chance on AI moves only
-        
+        csv_path=None,  # e.g. "examples/benchmark.csv"
+        stochastic_players=(1, 2),  # (2,) for chance on AI moves only
     )
     play_game()
