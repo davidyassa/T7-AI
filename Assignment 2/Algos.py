@@ -244,7 +244,7 @@ def get_best_move(board, algorithm, max_depth, *, evaluate_fn=evaluate,
     if any(isinstance(p, bool) or p not in (HUMAN, AI)
            for p in stochastic_players):
         raise ValueError("stochastic_players may contain only HUMAN and AI")
-    evaluator = default_evaluate if evaluate_fn is None else evaluate_fn
+    evaluator = evaluate if evaluate_fn is None else evaluate_fn
     if not callable(evaluator):
         raise ValueError("evaluate_fn must be callable")
 
