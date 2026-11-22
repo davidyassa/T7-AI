@@ -1,4 +1,4 @@
-"""Run the original board demo, try the searches, or collect benchmark data."""
+"""Run the board search demo, collect benchmark data, or play via CLI."""
 
 import csv
 import random
@@ -9,26 +9,9 @@ from board import board
 ALGORITHMS = ("minimax", "alpha_beta", "expectiminimax")
 
 
-def board_demo():
-    """The manual test that was previously at the bottom of board.py."""
-    board1 = board()
-    board1.printBoard()
-    board1.play_move(1, 0)
-    print()
-    board1.printBoard()
-    print()
-    board1.play_move(1, 5)
-    board1.printBoard()
-    print()
-    board1.play_move(2, 0)
-    board1.printBoard()
-    print(f"Board is full: {board1.isFull()}")
-    return board1
-
-
 def sample_board():
     position = board()
-    for player, col in ((1, 0), (1, 5), (2, 0)):
+    for player, col in ((1, 0), (1, 5), (2, 0), (1, 0)):
         position.play_move(player, col)
     return position
 
@@ -40,6 +23,7 @@ def search_demo(position, algorithms, depth, show_tree, stochastic_players):
             position,
             algorithm,
             depth,
+            evaluate_fn=evaluate,
             print_tree=show_tree,
             stochastic_players=stochastic_players,
         )
@@ -73,6 +57,7 @@ def benchmark(position, algorithms, depths, stochastic_players, csv_path=None):
                 position,
                 algorithm,
                 depth,
+                evaluate_fn=evaluate,
                 print_tree=False,
                 collect_trace=False,
                 stochastic_players=stochastic_players,
@@ -112,12 +97,13 @@ def main(
     if depth < 1 or not benchmark_depths or any(k < 1 for k in benchmark_depths):
         raise ValueError("Depths must be at least 1")
     algorithms = ALGORITHMS if algorithm == "all" else (algorithm,)
+    position = sample_board()
     if run_benchmark:
         benchmark(
-            sample_board(), algorithms, benchmark_depths, stochastic_players, csv_path
+            position, algorithms, benchmark_depths, stochastic_players, csv_path
         )
     else:
-        position = board_demo()
+        position.printBoard()
         if not board_only:
             search_demo(position, algorithms, depth, show_tree, stochastic_players)
 
@@ -137,7 +123,6 @@ def play_game():
     print(f"Initial Board Heuristic: {evaluate(game):.2f}")
 
     while not game.isFull():
-        # --- Human Turn (Player 1) ---
         valid_cols = [c for c, r in enumerate(game.moves()) if r != -1]
         while True:
             try:
@@ -156,7 +141,6 @@ def play_game():
         if game.isFull():
             break
 
-        # --- AI Turn (Player 2) ---
         print("\nAI thinking...")
         result = get_best_move(
             game,
@@ -186,7 +170,6 @@ def play_game():
             f"Time: {result['time_taken']:.4f}s"
         )
 
-    # --- Game Over: Count Connected-Fours ---
     human_score = game.count_connect_fours(1)
     ai_score = game.count_connect_fours(2)
     print("\n=== BOARD FULL - FINAL SCORE ===")
@@ -200,15 +183,23 @@ def play_game():
 
 
 if __name__ == "__main__":
-    # Change these arguments to choose what you want to run.
-    main(
-        algorithm="all",  # minimax, alpha_beta, expectiminimax, or all
-        depth=2,
-        show_tree=True,
-        board_only=False,
-        run_benchmark=False,
-        benchmark_depths=(1, 2, 3),
-        csv_path=None,  # e.g. "examples/benchmark.csv"
-        stochastic_players=(1, 2),  # (2,) for chance on AI moves only
-    )
-    play_game()
+    print("Select mode: 1 = Search Demo (with trees) | 2 = Benchmark (CSV) | 3 = Play CLI Game")
+    mode = input("Choice (1/2/3): ").strip()
+    if mode == "2":
+        main(
+            algorithm="all",
+            run_benchmark=True,
+            benchmark_depths=(1, 2, 3),
+            csv_path="benchmark.csv",
+            stochastic_players=(2,),
+        )
+    elif mode == "3":
+        play_game()
+    else:
+        main(
+            algorithm="all",
+            depth=2,
+            show_tree=True,
+            run_benchmark=False,
+            stochastic_players=(2,),
+        )
