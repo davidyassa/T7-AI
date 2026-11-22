@@ -52,9 +52,10 @@ def _windows(grid):
 def evaluate(board):
     eval_fours = board.count_connect_fours(2) - board.count_connect_fours(1)
     eval_threats = board.count_threats(2) - 1.1 * board.count_threats(1)
-    eval_forks = board.count_forks(2) - board.count_forks(1)
+    eval_forks = board.count_forks(2) - 1.1*board.count_forks(1)
+    center = board.count_center_control(2) - board.count_center_control(1)
     
-    return 1000 * eval_fours + 100 * eval_threats + 50 * eval_forks
+    return 100 * eval_fours + 4 * eval_threats + 15 * eval_forks + center
 
 
 def landing_probabilities(board, chosen_col):

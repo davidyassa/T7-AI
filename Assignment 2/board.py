@@ -214,3 +214,24 @@ class board:
                 if hits[r][c] >= 2:
                     forks += 1
         return forks
+    
+    def count_center_control(
+        self, player: int, center_weight: float = 0.30, adj_weight: float = 0.15
+    ) -> float:
+        """Score positional control of the center column(s) and immediate neighbors."""
+        score = 0.0
+        grid = self.grid
+        mid = self.cols // 2
+        center_cols = [mid] if self.cols % 2 == 1 else [mid - 1, mid]
+
+        for cc in center_cols:
+            for r in range(self.rows):
+                if grid[r][cc] == player:
+                    score += center_weight
+
+        for ac in (center_cols[0] - 1, center_cols[-1] + 1):
+            if 0 <= ac < self.cols:
+                for r in range(self.rows):
+                    if grid[r][ac] == player:
+                        score += adj_weight
+        return score
