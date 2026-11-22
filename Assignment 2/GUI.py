@@ -72,26 +72,26 @@ MAX_DEPTH_K = 6
 DEFAULT_DEPTH_K = 3
 
 # Modern Slate & Studio Lighting Color Palette
-COLOR_BG_TOP = (11, 17, 32)           # #0B1120
-COLOR_BG_BOTTOM = (20, 30, 52)        # #141E34
-COLOR_PANEL = (26, 36, 56)            # #1A2438 Card Surface
-COLOR_PANEL_INSET = (17, 25, 42)      # #11192A Recessed Card
-COLOR_BORDER = (51, 68, 99)           # #334463 Crisp Slate Border
+COLOR_BG_TOP = (11, 17, 32)  # #0B1120
+COLOR_BG_BOTTOM = (20, 30, 52)  # #141E34
+COLOR_PANEL = (26, 36, 56)  # #1A2438 Card Surface
+COLOR_PANEL_INSET = (17, 25, 42)  # #11192A Recessed Card
+COLOR_BORDER = (51, 68, 99)  # #334463 Crisp Slate Border
 COLOR_BORDER_BRIGHT = (76, 102, 148)
 
 COLOR_TEXT_PRIMARY = (248, 250, 252)  # #F8FAFC
-COLOR_TEXT_SECONDARY = (148, 163, 184)# #94A3B8
-COLOR_TEXT_ACCENT = (56, 189, 248)    # #38BDF8 Sky Cyan
-COLOR_TEXT_SUCCESS = (74, 222, 128)   # #4ADE80 Emerald
-COLOR_TEXT_WARN = (251, 191, 36)      # #FBBF24 Amber
-COLOR_TEXT_DANGER = (248, 113, 113)   # #F87171 Coral
+COLOR_TEXT_SECONDARY = (148, 163, 184)  # #94A3B8
+COLOR_TEXT_ACCENT = (56, 189, 248)  # #38BDF8 Sky Cyan
+COLOR_TEXT_SUCCESS = (74, 222, 128)  # #4ADE80 Emerald
+COLOR_TEXT_WARN = (251, 191, 36)  # #FBBF24 Amber
+COLOR_TEXT_DANGER = (248, 113, 113)  # #F87171 Coral
 
 # Board Cabinet Colors
-COLOR_BOARD_TOP = (37, 99, 235)       # #2563EB Royal Blue
-COLOR_BOARD_BOTTOM = (23, 62, 168)    # #173EA8 Deep Sapphire
-COLOR_BOARD_RIM = (96, 165, 250)      # #60A5FA Specular Edge
+COLOR_BOARD_TOP = (37, 99, 235)  # #2563EB Royal Blue
+COLOR_BOARD_BOTTOM = (23, 62, 168)  # #173EA8 Deep Sapphire
+COLOR_BOARD_RIM = (96, 165, 250)  # #60A5FA Specular Edge
 COLOR_BOARD_SHADOW = (6, 10, 20)
-COLOR_SLOT_BACKING = (10, 15, 28)     # Dark backing behind transparent holes
+COLOR_SLOT_BACKING = (10, 15, 28)  # Dark backing behind transparent holes
 
 # Disc Color Palettes ("RED" and "YELLOW")
 DISC_THEMES = {
@@ -134,6 +134,7 @@ BOUNCE_FACTOR = 0.20
 # Game States & Data Structures
 # =============================================================================
 
+
 class GameState(Enum):
     MENU = auto()
     PLAYING = auto()
@@ -146,6 +147,7 @@ class GameState(Enum):
 @dataclass
 class AIDecision:
     """Normalized output returned by `AIAgentAdapter`."""
+
     column: Optional[int]
     heuristic_value: float = 0.0
     nodes_expanded: int = 0
@@ -160,6 +162,7 @@ class AIDecision:
 @dataclass
 class DiscAnimation:
     """Smooth gravity-driven disc drop animation with subtle bounce."""
+
     col: int
     target_row: int
     player: int
@@ -188,6 +191,7 @@ class DiscAnimation:
 # =============================================================================
 # High-Resolution Supersampled Asset Generator (Eliminates Blocky Edges)
 # =============================================================================
+
 
 class AssetFactory:
     """Generates smooth, anti-aliased surfaces via 3x supersampling."""
@@ -232,7 +236,9 @@ class AssetFactory:
 
         if ghost:
             pygame.draw.circle(hi, (*theme["mid"], 52), (cx, cy), hr)
-            pygame.draw.circle(hi, (*theme["rim_light"], 145), (cx, cy), hr, width=3 * scale)
+            pygame.draw.circle(
+                hi, (*theme["rim_light"], 145), (cx, cy), hr, width=3 * scale
+            )
             pygame.draw.circle(
                 hi, (*theme["rim_light"], 90), (cx, cy), int(hr * 0.72), width=2 * scale
             )
@@ -271,7 +277,11 @@ class AssetFactory:
         groove_r = int(hr * 0.72)
         pygame.draw.circle(hi, theme["rim_dark"], (cx, cy), groove_r, width=3 * scale)
         pygame.draw.circle(
-            hi, (*theme["rim_light"], 110), (cx, cy + scale), groove_r - scale, width=scale
+            hi,
+            (*theme["rim_light"], 110),
+            (cx, cy + scale),
+            groove_r - scale,
+            width=scale,
         )
 
         # 5. Glossy specular crescent in upper-left quadrant
@@ -291,7 +301,9 @@ class AssetFactory:
 
         # 6. Optional crisp indicator ring for the last move played
         if last_move:
-            pygame.draw.circle(hi, (255, 255, 255, 235), (cx, cy), int(hr * 0.34), width=3 * scale)
+            pygame.draw.circle(
+                hi, (255, 255, 255, 235), (cx, cy), int(hr * 0.34), width=3 * scale
+            )
             pygame.draw.circle(hi, (15, 23, 42, 180), (cx, cy), int(hr * 0.25))
 
         smooth = pygame.transform.smoothscale(hi, (size // scale, size // scale))
@@ -323,26 +335,39 @@ class AssetFactory:
 
         # 1. Outer ambient drop shadow
         shadow_rect = body_rect.move(0, 6 * scale)
-        pygame.draw.rect(hi, (*COLOR_BOARD_SHADOW, 175), shadow_rect, border_radius=corner_r)
+        pygame.draw.rect(
+            hi, (*COLOR_BOARD_SHADOW, 175), shadow_rect, border_radius=corner_r
+        )
 
         # 2. Vertical blue gradient cabinet body masked to rounded rectangle
         grad = pygame.Surface((sw, sh), pygame.SRCALPHA)
         for y in range(body_rect.top, body_rect.bottom):
             t = (y - body_rect.top) / max(1, body_rect.height - 1)
             col = tuple(
-                int(COLOR_BOARD_TOP[c] + (COLOR_BOARD_BOTTOM[c] - COLOR_BOARD_TOP[c]) * t)
+                int(
+                    COLOR_BOARD_TOP[c]
+                    + (COLOR_BOARD_BOTTOM[c] - COLOR_BOARD_TOP[c]) * t
+                )
                 for c in range(3)
             )
-            pygame.draw.line(grad, (*col, 255), (body_rect.left, y), (body_rect.right, y))
+            pygame.draw.line(
+                grad, (*col, 255), (body_rect.left, y), (body_rect.right, y)
+            )
 
         round_mask = pygame.Surface((sw, sh), pygame.SRCALPHA)
-        pygame.draw.rect(round_mask, (255, 255, 255, 255), body_rect, border_radius=corner_r)
+        pygame.draw.rect(
+            round_mask, (255, 255, 255, 255), body_rect, border_radius=corner_r
+        )
         grad.blit(round_mask, (0, 0), special_flags=pygame.BLEND_RGBA_MIN)
         hi.blit(grad, (0, 0))
 
         # 3. Crisp top/outer cabinet bevel
         pygame.draw.rect(
-            hi, (*COLOR_BOARD_RIM, 150), body_rect, width=2 * scale, border_radius=corner_r
+            hi,
+            (*COLOR_BOARD_RIM, 150),
+            body_rect,
+            width=2 * scale,
+            border_radius=corner_r,
         )
 
         # 4. Punch out transparent circular slots + recessed bevel rings
@@ -369,7 +394,11 @@ class AssetFactory:
                     hi, (12, 26, 74, 210), (cx, cy), hr + scale, width=3 * scale
                 )
                 pygame.draw.circle(
-                    hi, (*COLOR_BOARD_RIM, 125), (cx, cy + scale), hr + 2 * scale, width=scale
+                    hi,
+                    (*COLOR_BOARD_RIM, 125),
+                    (cx, cy + scale),
+                    hr + 2 * scale,
+                    width=scale,
                 )
 
         smooth = pygame.transform.smoothscale(hi, (sw // scale, sh // scale))
@@ -381,6 +410,7 @@ class AssetFactory:
 # Engine & AI Integration Adapters
 # =============================================================================
 
+
 class GameEngineAdapter:
     """Clean interface isolating the GUI from the external `board.py` engine."""
 
@@ -389,7 +419,9 @@ class GameEngineAdapter:
         self.cols = max(MIN_COLS, cols)
         self._board = ExternalBoard(l=self.rows, w=self.cols)
 
-    def reset_board(self, rows: Optional[int] = None, cols: Optional[int] = None) -> None:
+    def reset_board(
+        self, rows: Optional[int] = None, cols: Optional[int] = None
+    ) -> None:
         if rows is not None:
             self.rows = max(MIN_ROWS, rows)
         if cols is not None:
@@ -468,19 +500,16 @@ class GameEngineAdapter:
         threats_diff = 0.0
         forks_diff = 0
         if hasattr(self._board, "count_connect_fours"):
-            fours_diff = (
-                self._board.count_connect_fours(AI_PLAYER)
-                - self._board.count_connect_fours(HUMAN_PLAYER)
-            )
+            fours_diff = self._board.count_connect_fours(
+                AI_PLAYER
+            ) - self._board.count_connect_fours(HUMAN_PLAYER)
         if hasattr(self._board, "count_threats"):
-            threats_diff = (
-                self._board.count_threats(AI_PLAYER)
-                - 1.1 * self._board.count_threats(HUMAN_PLAYER)
-            )
+            threats_diff = self._board.count_threats(
+                AI_PLAYER
+            ) - 1.1 * self._board.count_threats(HUMAN_PLAYER)
         if hasattr(self._board, "count_forks"):
-            forks_diff = (
-                self._board.count_forks(AI_PLAYER)
-                - self._board.count_forks(HUMAN_PLAYER)
+            forks_diff = self._board.count_forks(AI_PLAYER) - self._board.count_forks(
+                HUMAN_PLAYER
             )
         return {
             "total": self.evaluate_board(),
@@ -490,7 +519,9 @@ class GameEngineAdapter:
         }
 
     def resolve_ai_landing_column(self, chosen_col: int, algorithm: str) -> int:
-        if algorithm == "expectiminimax" and hasattr(external_algos, "sample_landing_column"):
+        if algorithm == "expectiminimax" and hasattr(
+            external_algos, "sample_landing_column"
+        ):
             return int(external_algos.sample_landing_column(self._board, chosen_col))
         return chosen_col
 
@@ -504,7 +535,9 @@ class AIAgentAdapter:
     def __init__(self, evaluate_fn: Optional[Any] = None) -> None:
         self.evaluate_fn = evaluate_fn
 
-    def get_best_move(self, board_snapshot: Any, algorithm: str, depth_k: int) -> AIDecision:
+    def get_best_move(
+        self, board_snapshot: Any, algorithm: str, depth_k: int
+    ) -> AIDecision:
         try:
             if not hasattr(external_algos, "get_best_move"):
                 raise AttributeError("`Algos.py` does not define `get_best_move`.")
@@ -544,6 +577,7 @@ class AIAgentAdapter:
 # =============================================================================
 # Reusable UI Widgets
 # =============================================================================
+
 
 def draw_smooth_card(
     surface: pygame.Surface,
@@ -620,7 +654,11 @@ class Button:
         draw_rect = self.rect.move(0, -1 if hovered else 0)
         pygame.draw.rect(surface, fill, draw_rect, border_radius=self.border_radius)
         pygame.draw.rect(
-            surface, border_col, draw_rect, width=2 if self.selected else 1, border_radius=self.border_radius
+            surface,
+            border_col,
+            draw_rect,
+            width=2 if self.selected else 1,
+            border_radius=self.border_radius,
         )
 
         text_surf = self.font.render(self.text, True, label_color)
@@ -630,6 +668,7 @@ class Button:
 # =============================================================================
 # Main GUI Application Controller
 # =============================================================================
+
 
 class Connect4GUI:
     """Manages Pygame rendering, event routing, animations, and state transitions."""
@@ -643,7 +682,9 @@ class Connect4GUI:
         self.assets = AssetFactory()
 
         # Typography (clean sans-serif stack)
-        font_family = pygame.font.match_font("segoeui,inter,sfprodisplay,arial,helvetica")
+        font_family = pygame.font.match_font(
+            "segoeui,inter,sfprodisplay,arial,helvetica"
+        )
         self.font_title = pygame.font.Font(font_family, 52)
         self.font_title.set_bold(True)
         self.font_subtitle = pygame.font.Font(font_family, 19)
@@ -656,7 +697,9 @@ class Connect4GUI:
         self.font_btn = pygame.font.Font(font_family, 17)
         self.font_btn.set_bold(True)
 
-        mono_family = pygame.font.match_font("consolas,cascadiamono,couriernew,monospace")
+        mono_family = pygame.font.match_font(
+            "consolas,cascadiamono,couriernew,monospace"
+        )
         self.font_mono = pygame.font.Font(mono_family, 14)
 
         # Match Configuration (Main Menu)
@@ -736,7 +779,9 @@ class Connect4GUI:
         total_w = self.cell_size * self.engine.cols
         total_h = self.cell_size * self.engine.rows
         board_x = origin_x + (max_board_w - total_w) // 2
-        board_y = origin_y + self.cell_size + (max_board_h - self.cell_size - total_h) // 2
+        board_y = (
+            origin_y + self.cell_size + (max_board_h - self.cell_size - total_h) // 2
+        )
         self.board_rect = pygame.Rect(board_x, board_y, total_w, total_h)
 
     def _init_menu_widgets(self) -> None:
@@ -767,20 +812,59 @@ class Connect4GUI:
             rect = pygame.Rect(start_x + idx * (btn_w + gap), 336, btn_w, btn_h)
             self.menu_algo_buttons.append(
                 Button(
-                    rect, label, self.font_btn,
-                    base_color=COLOR_BTN_SECONDARY, hover_color=COLOR_BTN_SECONDARY_HOVER
+                    rect,
+                    label,
+                    self.font_btn,
+                    base_color=COLOR_BTN_SECONDARY,
+                    hover_color=COLOR_BTN_SECONDARY_HOVER,
                 )
             )
 
         # 3. Rows (>=6), Columns (>=7), and Depth K Steppers
-        self.btn_rows_minus = Button(pygame.Rect(cx - 265, 442, 40, 40), "-", self.font_heading, base_color=COLOR_BTN_SECONDARY, hover_color=COLOR_BTN_SECONDARY_HOVER)
-        self.btn_rows_plus = Button(pygame.Rect(cx - 155, 442, 40, 40), "+", self.font_heading, base_color=COLOR_BTN_SECONDARY, hover_color=COLOR_BTN_SECONDARY_HOVER)
+        self.btn_rows_minus = Button(
+            pygame.Rect(cx - 265, 442, 40, 40),
+            "-",
+            self.font_heading,
+            base_color=COLOR_BTN_SECONDARY,
+            hover_color=COLOR_BTN_SECONDARY_HOVER,
+        )
+        self.btn_rows_plus = Button(
+            pygame.Rect(cx - 155, 442, 40, 40),
+            "+",
+            self.font_heading,
+            base_color=COLOR_BTN_SECONDARY,
+            hover_color=COLOR_BTN_SECONDARY_HOVER,
+        )
 
-        self.btn_cols_minus = Button(pygame.Rect(cx - 75, 442, 40, 40), "-", self.font_heading, base_color=COLOR_BTN_SECONDARY, hover_color=COLOR_BTN_SECONDARY_HOVER)
-        self.btn_cols_plus = Button(pygame.Rect(cx + 35, 442, 40, 40), "+", self.font_heading, base_color=COLOR_BTN_SECONDARY, hover_color=COLOR_BTN_SECONDARY_HOVER)
+        self.btn_cols_minus = Button(
+            pygame.Rect(cx - 75, 442, 40, 40),
+            "-",
+            self.font_heading,
+            base_color=COLOR_BTN_SECONDARY,
+            hover_color=COLOR_BTN_SECONDARY_HOVER,
+        )
+        self.btn_cols_plus = Button(
+            pygame.Rect(cx + 35, 442, 40, 40),
+            "+",
+            self.font_heading,
+            base_color=COLOR_BTN_SECONDARY,
+            hover_color=COLOR_BTN_SECONDARY_HOVER,
+        )
 
-        self.btn_depth_minus = Button(pygame.Rect(cx + 115, 442, 40, 40), "-", self.font_heading, base_color=COLOR_BTN_SECONDARY, hover_color=COLOR_BTN_SECONDARY_HOVER)
-        self.btn_depth_plus = Button(pygame.Rect(cx + 225, 442, 40, 40), "+", self.font_heading, base_color=COLOR_BTN_SECONDARY, hover_color=COLOR_BTN_SECONDARY_HOVER)
+        self.btn_depth_minus = Button(
+            pygame.Rect(cx + 115, 442, 40, 40),
+            "-",
+            self.font_heading,
+            base_color=COLOR_BTN_SECONDARY,
+            hover_color=COLOR_BTN_SECONDARY_HOVER,
+        )
+        self.btn_depth_plus = Button(
+            pygame.Rect(cx + 225, 442, 40, 40),
+            "+",
+            self.font_heading,
+            base_color=COLOR_BTN_SECONDARY,
+            hover_color=COLOR_BTN_SECONDARY_HOVER,
+        )
 
         # 4. Primary Menu Actions
         self.btn_start_game = Button(
@@ -845,9 +929,13 @@ class Connect4GUI:
         )
 
         # Tree Viewer Modal (Bonus)
-        self.tree_modal_rect = pygame.Rect(70, 52, WINDOW_WIDTH - 140, WINDOW_HEIGHT - 104)
+        self.tree_modal_rect = pygame.Rect(
+            70, 52, WINDOW_WIDTH - 140, WINDOW_HEIGHT - 104
+        )
         self.btn_close_tree = Button(
-            pygame.Rect(self.tree_modal_rect.right - 140, self.tree_modal_rect.y + 18, 116, 38),
+            pygame.Rect(
+                self.tree_modal_rect.right - 140, self.tree_modal_rect.y + 18, 116, 38
+            ),
             "Close (Esc)",
             self.font_small,
             base_color=COLOR_BTN_DANGER,
@@ -891,7 +979,9 @@ class Connect4GUI:
         self.heuristic_info = self.engine.get_heuristic_breakdown()
         self.last_ai_decision = AIDecision(column=None)
         color_name = DISC_THEMES[self.human_color_key]["name"]
-        self.status_message = f"Your turn! Click a column to drop your {color_name} disc."
+        self.status_message = (
+            f"Your turn! Click a column to drop your {color_name} disc."
+        )
 
     def _slot_center(self, row: int, col: int) -> tuple[float, float]:
         cx = self.board_rect.x + col * self.cell_size + self.cell_size / 2.0
@@ -1028,7 +1118,9 @@ class Connect4GUI:
                 f"slipped into Col {actual_col + 1}!"
             )
         else:
-            self.status_message = f"AI drops {ai_color_name} disc in Column {actual_col + 1}."
+            self.status_message = (
+                f"AI drops {ai_color_name} disc in Column {actual_col + 1}."
+            )
 
         self._begin_disc_drop(actual_col, AI_PLAYER)
 
@@ -1070,7 +1162,10 @@ class Connect4GUI:
                         self.state = self.previous_state
                     elif self.state in (GameState.PLAYING, GameState.GAME_OVER):
                         self._request_navigation(GameState.MENU)
-                elif event.key == pygame.K_t and self.state in (GameState.PLAYING, GameState.GAME_OVER):
+                elif event.key == pygame.K_t and self.state in (
+                    GameState.PLAYING,
+                    GameState.GAME_OVER,
+                ):
                     if self.last_ai_decision.tree_trace:
                         self._open_tree_viewer()
 
@@ -1085,7 +1180,9 @@ class Connect4GUI:
 
     def _request_navigation(self, target_action: str | GameState) -> None:
         if self.state == GameState.AI_THINKING or self.active_animation is not None:
-            self.status_message = "Wait for the current turn to finish before resetting."
+            self.status_message = (
+                "Wait for the current turn to finish before resetting."
+            )
             return
 
         if self.moves_played > 0 and self.state == GameState.PLAYING:
@@ -1154,7 +1251,9 @@ class Connect4GUI:
             self.status_message = "AI is thinking — please wait..."
 
         elif self.state == GameState.TREE_VIEW:
-            if self.btn_close_tree.handle_click(pos) or not self.tree_modal_rect.collidepoint(pos):
+            if self.btn_close_tree.handle_click(
+                pos
+            ) or not self.tree_modal_rect.collidepoint(pos):
                 self.state = self.previous_state
 
         elif self.state == GameState.CONFIRM_RESTART:
@@ -1170,9 +1269,13 @@ class Connect4GUI:
         elif self.state == GameState.GAME_OVER:
             if self.btn_view_tree.handle_click(pos):
                 self._open_tree_viewer()
-            elif self.btn_play_again.handle_click(pos) or self.btn_restart.handle_click(pos):
+            elif self.btn_play_again.handle_click(pos) or self.btn_restart.handle_click(
+                pos
+            ):
                 self._start_new_game()
-            elif self.btn_gameover_menu.handle_click(pos) or self.btn_main_menu.handle_click(pos):
+            elif self.btn_gameover_menu.handle_click(
+                pos
+            ) or self.btn_main_menu.handle_click(pos):
                 self.state = GameState.MENU
 
     # -------------------------------------------------------------------------
@@ -1222,7 +1325,9 @@ class Connect4GUI:
         ghost: bool = False,
         last_move: bool = False,
     ) -> None:
-        color_key = self.human_color_key if player == HUMAN_PLAYER else self.ai_color_key
+        color_key = (
+            self.human_color_key if player == HUMAN_PLAYER else self.ai_color_key
+        )
         surf = self.assets.get_disc(radius, color_key, ghost=ghost, last_move=last_move)
         rect = surf.get_rect(center=(int(cx), int(cy)))
         self.screen.blit(surf, rect)
@@ -1247,18 +1352,32 @@ class Connect4GUI:
         self.screen.blit(sub_surf, sub_surf.get_rect(center=(cx, 162)))
 
         # 1. Color Selection
-        c_lbl = self.font_body_bold.render("1. Choose Your Disc Color", True, COLOR_TEXT_ACCENT)
+        c_lbl = self.font_body_bold.render(
+            "1. Choose Your Disc Color", True, COLOR_TEXT_ACCENT
+        )
         self.screen.blit(c_lbl, c_lbl.get_rect(center=(cx, 214)))
 
         self.btn_color_red.selected = self.human_color_key == "RED"
         self.btn_color_yellow.selected = self.human_color_key == "YELLOW"
         self.btn_color_red.draw(self.screen, mouse_pos)
         self.btn_color_yellow.draw(self.screen, mouse_pos)
-        self._blit_disc(self.btn_color_red.rect.left + 26, self.btn_color_red.rect.centery, 11, HUMAN_PLAYER if self.human_color_key == "RED" else AI_PLAYER)
-        self._blit_disc(self.btn_color_yellow.rect.left + 26, self.btn_color_yellow.rect.centery, 11, HUMAN_PLAYER if self.human_color_key == "YELLOW" else AI_PLAYER)
+        self._blit_disc(
+            self.btn_color_red.rect.left + 26,
+            self.btn_color_red.rect.centery,
+            11,
+            HUMAN_PLAYER if self.human_color_key == "RED" else AI_PLAYER,
+        )
+        self._blit_disc(
+            self.btn_color_yellow.rect.left + 26,
+            self.btn_color_yellow.rect.centery,
+            11,
+            HUMAN_PLAYER if self.human_color_key == "YELLOW" else AI_PLAYER,
+        )
 
         # 2. Algorithm Selection
-        a_lbl = self.font_body_bold.render("2. Select AI Search Algorithm", True, COLOR_TEXT_ACCENT)
+        a_lbl = self.font_body_bold.render(
+            "2. Select AI Search Algorithm", True, COLOR_TEXT_ACCENT
+        )
         self.screen.blit(a_lbl, a_lbl.get_rect(center=(cx, 310)))
         for idx, btn in enumerate(self.menu_algo_buttons):
             btn.selected = idx == self.selected_algo_idx
@@ -1278,9 +1397,27 @@ class Connect4GUI:
         self.btn_depth_plus.enabled = self.depth_k < MAX_DEPTH_K
 
         stepper_groups = [
-            ("Rows (>=6)", self.config_rows, cx - 190, self.btn_rows_minus, self.btn_rows_plus),
-            ("Cols (>=7)", self.config_cols, cx, self.btn_cols_minus, self.btn_cols_plus),
-            ("Depth K", self.depth_k, cx + 190, self.btn_depth_minus, self.btn_depth_plus),
+            (
+                "Rows (>=6)",
+                self.config_rows,
+                cx - 190,
+                self.btn_rows_minus,
+                self.btn_rows_plus,
+            ),
+            (
+                "Cols (>=7)",
+                self.config_cols,
+                cx,
+                self.btn_cols_minus,
+                self.btn_cols_plus,
+            ),
+            (
+                "Depth K",
+                self.depth_k,
+                cx + 190,
+                self.btn_depth_minus,
+                self.btn_depth_plus,
+            ),
         ]
         for label, val, group_cx, b_minus, b_plus in stepper_groups:
             cap = self.font_small.render(label, True, COLOR_TEXT_SECONDARY)
@@ -1289,7 +1426,9 @@ class Connect4GUI:
             b_plus.draw(self.screen, mouse_pos)
             val_box = pygame.Rect(group_cx - 32, 442, 64, 40)
             pygame.draw.rect(self.screen, COLOR_PANEL_INSET, val_box, border_radius=8)
-            pygame.draw.rect(self.screen, COLOR_BORDER, val_box, width=1, border_radius=8)
+            pygame.draw.rect(
+                self.screen, COLOR_BORDER, val_box, width=1, border_radius=8
+            )
             vs = self.font_heading.render(str(val), True, COLOR_TEXT_PRIMARY)
             self.screen.blit(vs, vs.get_rect(center=val_box.center))
 
@@ -1311,7 +1450,9 @@ class Connect4GUI:
 
         # Dark backing plate behind the transparent cutouts
         backing_rect = self.board_rect.inflate(-6, -6)
-        pygame.draw.rect(self.screen, COLOR_SLOT_BACKING, backing_rect, border_radius=14)
+        pygame.draw.rect(
+            self.screen, COLOR_SLOT_BACKING, backing_rect, border_radius=14
+        )
 
         # Hover Column Highlight + Floating Disc + Ghost Target Preview
         valid_moves = self.engine.get_valid_moves()
@@ -1322,7 +1463,9 @@ class Connect4GUI:
             and self.hovered_col is not None
         ):
             col_x = self.board_rect.x + self.hovered_col * self.cell_size
-            beam = pygame.Surface((self.cell_size, self.board_rect.height), pygame.SRCALPHA)
+            beam = pygame.Surface(
+                (self.cell_size, self.board_rect.height), pygame.SRCALPHA
+            )
             beam.fill((255, 255, 255, 18))
             self.screen.blit(beam, (col_x, self.board_rect.y))
 
@@ -1330,7 +1473,11 @@ class Connect4GUI:
             preview_cy = self.board_rect.y - self.cell_size * 0.52
             is_valid = self.hovered_col in valid_moves
             self._blit_disc(
-                preview_cx, preview_cy, self.disc_radius, HUMAN_PLAYER, ghost=not is_valid
+                preview_cx,
+                preview_cy,
+                self.disc_radius,
+                HUMAN_PLAYER,
+                ghost=not is_valid,
             )
             if is_valid:
                 landing_r = self.engine.get_landing_row(self.hovered_col)
@@ -1346,7 +1493,9 @@ class Connect4GUI:
                 if cell_val != EMPTY_CELL:
                     cx, cy = self._slot_center(r, c)
                     is_last = self.last_move_cell == (r, c)
-                    self._blit_disc(cx, cy, self.disc_radius, cell_val, last_move=is_last)
+                    self._blit_disc(
+                        cx, cy, self.disc_radius, cell_val, last_move=is_last
+                    )
 
         # Active Falling Disc (rendered behind the blue cabinet cutouts!)
         if self.active_animation is not None:
@@ -1372,13 +1521,17 @@ class Connect4GUI:
         for c in range(self.engine.cols):
             cx, _ = self._slot_center(self.engine.rows - 1, c)
             lbl = self.font_small.render(str(c + 1), True, COLOR_TEXT_SECONDARY)
-            self.screen.blit(lbl, lbl.get_rect(center=(int(cx), self.board_rect.bottom + 24)))
+            self.screen.blit(
+                lbl, lbl.get_rect(center=(int(cx), self.board_rect.bottom + 24))
+            )
 
         # Right-Side Telemetry & Control HUD
         self._render_hud_panel(mouse_pos)
 
     def _render_hud_panel(self, mouse_pos: tuple[int, int]) -> None:
-        draw_smooth_card(self.screen, self.hud_panel_rect, COLOR_PANEL, COLOR_BORDER, radius=18)
+        draw_smooth_card(
+            self.screen, self.hud_panel_rect, COLOR_PANEL, COLOR_BORDER, radius=18
+        )
 
         px = self.hud_panel_rect.x + 20
         pw = self.hud_panel_rect.width - 40
@@ -1386,12 +1539,23 @@ class Connect4GUI:
 
         # 1. Turn Indicator
         turn_box = pygame.Rect(px, y, pw, 64)
-        draw_smooth_card(self.screen, turn_box, COLOR_PANEL_INSET, COLOR_BORDER, radius=12, shadow=False)
+        draw_smooth_card(
+            self.screen,
+            turn_box,
+            COLOR_PANEL_INSET,
+            COLOR_BORDER,
+            radius=12,
+            shadow=False,
+        )
 
         if self.state == GameState.GAME_OVER:
             turn_text = "MATCH COMPLETE"
             turn_col = COLOR_TEXT_ACCENT
-            badge_player = self.winner if self.winner in (HUMAN_PLAYER, AI_PLAYER) else HUMAN_PLAYER
+            badge_player = (
+                self.winner
+                if self.winner in (HUMAN_PLAYER, AI_PLAYER)
+                else HUMAN_PLAYER
+            )
         elif self.state == GameState.AI_THINKING:
             dots = "." * ((pygame.time.get_ticks() // 350) % 4)
             turn_text = f"AI THINKING{dots}"
@@ -1414,7 +1578,14 @@ class Connect4GUI:
         # 2. Connected-4s Scoreboard
         human_fours, ai_fours = self.engine.get_scores()
         score_box = pygame.Rect(px, y, pw, 94)
-        draw_smooth_card(self.screen, score_box, COLOR_PANEL_INSET, COLOR_BORDER, radius=12, shadow=False)
+        draw_smooth_card(
+            self.screen,
+            score_box,
+            COLOR_PANEL_INSET,
+            COLOR_BORDER,
+            radius=12,
+            shadow=False,
+        )
 
         s_hdr = self.font_small.render("CONNECTED-4s SCORE", True, COLOR_TEXT_SECONDARY)
         self.screen.blit(s_hdr, (px + 14, y + 10))
@@ -1423,13 +1594,17 @@ class Connect4GUI:
         a_col_name = DISC_THEMES[self.ai_color_key]["name"]
 
         self._blit_disc(px + 25, y + 46, 10, HUMAN_PLAYER)
-        h_lbl = self.font_body_bold.render(f"Human ({h_col_name}):", True, COLOR_TEXT_PRIMARY)
+        h_lbl = self.font_body_bold.render(
+            f"Human ({h_col_name}):", True, COLOR_TEXT_PRIMARY
+        )
         h_val = self.font_heading.render(str(human_fours), True, COLOR_TEXT_PRIMARY)
         self.screen.blit(h_lbl, (px + 44, y + 35))
         self.screen.blit(h_val, (px + pw - h_val.get_width() - 16, y + 31))
 
         self._blit_disc(px + 25, y + 74, 10, AI_PLAYER)
-        a_lbl = self.font_body_bold.render(f"AI ({a_col_name}):", True, COLOR_TEXT_PRIMARY)
+        a_lbl = self.font_body_bold.render(
+            f"AI ({a_col_name}):", True, COLOR_TEXT_PRIMARY
+        )
         a_val = self.font_heading.render(str(ai_fours), True, COLOR_TEXT_PRIMARY)
         self.screen.blit(a_lbl, (px + 44, y + 63))
         self.screen.blit(a_val, (px + pw - a_val.get_width() - 16, y + 59))
@@ -1437,15 +1612,27 @@ class Connect4GUI:
 
         # 3. Heuristic & Search Telemetry
         info_box = pygame.Rect(px, y, pw, 212)
-        draw_smooth_card(self.screen, info_box, COLOR_PANEL_INSET, COLOR_BORDER, radius=12, shadow=False)
+        draw_smooth_card(
+            self.screen,
+            info_box,
+            COLOR_PANEL_INSET,
+            COLOR_BORDER,
+            radius=12,
+            shadow=False,
+        )
 
-        i_hdr = self.font_small.render("HEURISTIC & SEARCH TELEMETRY", True, COLOR_TEXT_SECONDARY)
+        i_hdr = self.font_small.render(
+            "HEURISTIC & SEARCH TELEMETRY", True, COLOR_TEXT_SECONDARY
+        )
         self.screen.blit(i_hdr, (px + 14, y + 10))
 
         telemetry_rows = [
             ("Algorithm:", f"{self.current_algorithm_label} (K={self.depth_k})"),
             ("Board Heuristic:", f"{self.heuristic_info['total']:+.2f}"),
-            ("Fours / Threats:", f"{self.heuristic_info['fours']:+d} / {self.heuristic_info['threats']:+.1f}"),
+            (
+                "Fours / Threats:",
+                f"{self.heuristic_info['fours']:+d} / {self.heuristic_info['threats']:+.1f}",
+            ),
             ("AI Search Value:", f"{self.last_ai_decision.heuristic_value:+.2f}"),
             ("Nodes Expanded:", f"{self.last_ai_decision.nodes_expanded:,}"),
             ("Think Time:", f"{self.last_ai_decision.time_taken:.4f} s"),
@@ -1462,7 +1649,14 @@ class Connect4GUI:
 
         # 4. Game Status Message
         status_box = pygame.Rect(px, y, pw, 88)
-        draw_smooth_card(self.screen, status_box, COLOR_PANEL_INSET, COLOR_BORDER, radius=12, shadow=False)
+        draw_smooth_card(
+            self.screen,
+            status_box,
+            COLOR_PANEL_INSET,
+            COLOR_BORDER,
+            radius=12,
+            shadow=False,
+        )
         st_hdr = self.font_small.render("STATUS", True, COLOR_TEXT_SECONDARY)
         self.screen.blit(st_hdr, (px + 14, y + 9))
         self._draw_wrapped_text(
@@ -1474,7 +1668,9 @@ class Connect4GUI:
 
         # 5. Buttons
         controls_enabled = self.state in (GameState.PLAYING, GameState.GAME_OVER)
-        self.btn_view_tree.enabled = controls_enabled and bool(self.last_ai_decision.tree_trace)
+        self.btn_view_tree.enabled = controls_enabled and bool(
+            self.last_ai_decision.tree_trace
+        )
         self.btn_restart.enabled = controls_enabled
         self.btn_main_menu.enabled = controls_enabled
 
@@ -1514,7 +1710,9 @@ class Connect4GUI:
         pygame.draw.rect(self.screen, COLOR_PANEL_INSET, viewport, border_radius=12)
         pygame.draw.rect(self.screen, COLOR_BORDER, viewport, width=1, border_radius=12)
 
-        lines = (self.last_ai_decision.tree_trace or "No tree recorded yet.").splitlines()
+        lines = (
+            self.last_ai_decision.tree_trace or "No tree recorded yet."
+        ).splitlines()
         line_h = self.font_mono.get_linesize() + 3
         max_scroll_y = max(0, len(lines) * line_h - viewport.height + 24)
         self.tree_scroll_y = min(self.tree_scroll_y, max_scroll_y)
@@ -1549,7 +1747,9 @@ class Connect4GUI:
         overlay.fill((5, 9, 18, 195))
         self.screen.blit(overlay, (0, 0))
 
-        draw_smooth_card(self.screen, self.modal_rect, COLOR_PANEL, COLOR_TEXT_ACCENT, radius=18)
+        draw_smooth_card(
+            self.screen, self.modal_rect, COLOR_PANEL, COLOR_TEXT_ACCENT, radius=18
+        )
 
         cx = self.modal_rect.centerx
         title = self.font_heading.render("Match In Progress", True, COLOR_TEXT_PRIMARY)
@@ -1578,8 +1778,12 @@ class Connect4GUI:
             headline = "DRAW GAME!"
             accent = COLOR_TEXT_ACCENT
 
-        draw_smooth_card(self.screen, self.gameover_card_rect, COLOR_PANEL, accent, radius=20)
-        pygame.draw.rect(self.screen, accent, self.gameover_card_rect, width=2, border_radius=20)
+        draw_smooth_card(
+            self.screen, self.gameover_card_rect, COLOR_PANEL, accent, radius=20
+        )
+        pygame.draw.rect(
+            self.screen, accent, self.gameover_card_rect, width=2, border_radius=20
+        )
 
         cx = self.gameover_card_rect.centerx
         top = self.gameover_card_rect.y

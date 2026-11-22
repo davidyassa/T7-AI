@@ -53,7 +53,8 @@ def evaluate(board):
     eval_fours = board.count_connect_fours(2) - board.count_connect_fours(1)
     eval_threats = board.count_threats(2) - 1.1 * board.count_threats(1)
     eval_forks = board.count_forks(2) - board.count_forks(1)
-    return 1000 * eval_fours + 200 * eval_threats + 50 * eval_forks
+    
+    return 1000 * eval_fours + 100 * eval_threats + 50 * eval_forks
 
 
 def landing_probabilities(board, chosen_col):
@@ -270,12 +271,13 @@ def get_best_move(
         raise ValueError("Choose minimax, alpha_beta, or expectiminimax")
     if print_tree and not collect_trace:
         raise ValueError("Printing a tree requires collect_trace=True")
-    if isinstance(stochastic_players, Integral) and not isinstance(stochastic_players, bool):
+    if isinstance(stochastic_players, Integral) and not isinstance(
+        stochastic_players, bool
+    ):
         stochastic_players = (stochastic_players,)
     else:
         stochastic_players = tuple(stochastic_players)
-    if any(isinstance(p, bool) or p not in (HUMAN, AI)
-           for p in stochastic_players):
+    if any(isinstance(p, bool) or p not in (HUMAN, AI) for p in stochastic_players):
         raise ValueError("stochastic_players may contain only HUMAN and AI")
     evaluator = evaluate if evaluate_fn is None else evaluate_fn
     if not callable(evaluator):
